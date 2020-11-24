@@ -21,5 +21,5 @@ if index0 is not None:
      cleaned_text = apply_cleaning(text_to_clean)
 
      # Show first example
-     text_df = pd.DataFrame([text_to_clean, cleaned_text],index=['ORIGINAL','CLEANED'], columns= statement['ID'])
+     text_df = pd.DataFrame([text_to_clean, cleaned_text],index=['ORIGINAL','CLEANED'], columns= statement['ID']).T
      st.write(text_df)
