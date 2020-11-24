@@ -93,9 +93,10 @@ if index0 is not None:
           label_km = kmeans.labels_
           klaster_df = pd.DataFrame(klasterkm, columns= id_requirement)
           st.write(klaster_df)
+          st.write(label_km)
           
-          actual = label_km
-          st.text(classification_report(actual, prediction)) 
+#           actual = label_km
+#           st.text(classification_report(actual, prediction)) 
 
      elif genre == 'Ontology':
           st.write("ontology.")
