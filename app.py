@@ -99,14 +99,13 @@ if index0 is not None:
           st.write(XVSM_scaled)
           
           correct = 0
-          for i in range(len(XVSM_scaled)):
+          for i in range(len(klaster_df)):
               predict_me = np.array(XVSM_scaled[i].astype(float))
               predict_me = predict_me.reshape(-1, len(predict_me))
               prediction = kmeans.predict(predict_me)
-              if prediction[0] == XVSM_scaled[i].all():
+              if prediction[0] == klaster_df[i].all():
                   correct += 1
           st.write(correct/len(XVSM_scaled))
-
 
      elif genre == 'Ontology':
           st.write("ontology.")
