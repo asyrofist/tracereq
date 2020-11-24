@@ -31,7 +31,7 @@ if index0 is not None:
      st.header('Traceability parameters')
      genre = st.sidebar.radio("What do you choose?",('Information_Retrieval', 'Ontology', 'IR+LSA', 'IR+LDA'))
      if genre == 'Information_Retrieval':
-          st.subheader('Information Retrieval Parameter')
+          st.subheader("bag of words")
           count_vector = CountVectorizer(cleaned_text)
           count_vector.fit(cleaned_text)
           kolom_df = count_vector.get_feature_names()
@@ -48,8 +48,6 @@ if index0 is not None:
           doc_term_matrix_l2 = []
           for vec in doc_array:
               doc_term_matrix_l2.append(l2_normalizer(vec))
-          
-          st.write(doc_term_matrix_l2)
           
           def build_lexicon(corpus):
               lexicon = set()
@@ -71,21 +69,19 @@ if index0 is not None:
               n_samples = len(doclist)
               df = numDocsContaining(word, doclist)
               return np.log(n_samples / 1+df)
-
-          vocabulary = build_lexicon(cleaned_text)
-          mydoclist = cleaned_text
-
-          my_idf_vector = [idf(word, mydoclist) for word in vocabulary]
-          
+     
           def build_idf_matrix(idf_vector):
               idf_mat = np.zeros((len(idf_vector), len(idf_vector)))
               np.fill_diagonal(idf_mat, idf_vector)
               return idf_mat
 
+          vocabulary = build_lexicon(cleaned_text)
+          mydoclist = cleaned_text
+
+          my_idf_vector = [idf(word, mydoclist) for word in vocabulary]
           my_idf_matrix = build_idf_matrix(my_idf_vector)
           
           doc_term_matrix_tfidf = []
-
           #performing tf-idf matrix multiplication
           for tf_vector in doc_array:
               doc_term_matrix_tfidf.append(np.dot(tf_vector, my_idf_matrix))
@@ -94,14 +90,12 @@ if index0 is not None:
           doc_term_matrix_tfidf_l2 = []
           for tf_vector in doc_term_matrix_tfidf:
               doc_term_matrix_tfidf_l2.append(l2_normalizer(tf_vector))
-
-          
           hasil_tfidf = np.matrix(doc_term_matrix_tfidf_l2)
-          st.write (hasil_tfidf)
           
+          st.subheader("l2 tfidf normalizer")
+          frequency_TFIDF = pd.DataFrame(hasil_tfidf,index=cleaned_text,columns=count_vector.get_feature_names())
+          st.write(frequency_TFIDF)
 
-          # np.matrix() just to make it easier to look at
-          
      elif genre == 'Ontology':
           st.write("ontology.")
      elif genre == 'IR+LSA':
