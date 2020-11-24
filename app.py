@@ -150,7 +150,7 @@ if index0 is not None:
 
             model = Doc2Vec(documents = sentences, dm = dimension_value, size = size_value, window = window_value, min_count = 1, iter = iterasi_value, workers = Pool()._processes)
             model.init_sims(replace = True)
-            nilai_vektor = [model.infer_vector("sent{}".format(tags)) for tags in range(0, len(sentences))]
+            nilai_vektor = [model.infer_vector("sent{}".format(tags)) for tags in range(0, len(cleaned_text))]
 #             nilai_vektor = [model.infer_vector([tags for words, tags in sentences])]
 #             st.dataframe(sentences)
 #             id_requirement = fulldataset(index0, index1)['ID']
