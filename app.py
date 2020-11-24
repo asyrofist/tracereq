@@ -165,16 +165,9 @@ if index0 is not None:
             id_requirement = fulldataset(index0, index1)['ID']
             df_kmeans = pd.DataFrame(order_centroids, index= id_requirement, columns= ['vektor {}'.format(num) for num in range(0, size_value)])
             st.dataframe(df_kmeans)
-               
-            correct = 0
-            for i in range(len(order_centroids)):
-                predict_me = np.array(order_centroids[i].astype(float))
-                predict_me = predict_me.reshape(-1, len(predict_me))
-                prediction = KMeans.predict(predict_me)
-                if prediction[0] == order_centroids[i].all():
-                   correct += 1
-            st.sidebar.write(correct/len(order_centroids))
-          
+                    
+                    
+                    
      elif genre == 'IR+LSA':
           st.sidebar.subheader("Parameter LSA")
           feature_value = st.sidebar.slider("Berapa Feature?", 10, 100, 1000)
