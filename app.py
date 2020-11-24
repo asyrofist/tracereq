@@ -24,7 +24,8 @@ if index0 is not None:
      text_df = pd.DataFrame([text_to_clean, cleaned_text],index=['ORIGINAL','CLEANED'], columns= statement['ID']).T
      st.write(text_df)
      
-     genre = st.radio("What's your favorite movie genre",('Information_Retrieval', 'Ontology', 'IR+LSA', 'IR+LDA'))
+     st.subheader('Traceability parameters')
+     genre = st.radio("What do you choose?",('Information_Retrieval', 'Ontology', 'IR+LSA', 'IR+LDA'))
      if genre == 'Information_Retrieval':
           st.write('IR.')
      elif genre == 'Ontology':
