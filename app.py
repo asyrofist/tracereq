@@ -91,6 +91,21 @@ if index0 is not None:
           klaster_df = pd.DataFrame(klasterkm, columns= id_requirement)
           st.write(klaster_df)
           
+          from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, classification_report
+#           import seaborn as sns
+
+          actual = cosine_similaritas
+          resultskm = confusion_matrix(actual, prediction)
+          akurasiskm = accuracy_score(actual, prediction) 
+          presisiskm = precision_score(actual, prediction, average='macro') 
+          rekalskm = recall_score(actual, prediction, average='macro') 
+          resultskm = confusion_matrix(actual, prediction)
+#           akurasi_table = pd.DataFrame([akurasikm, presisikm, rekalskm], index=['accurasion', 'precission', 'recall'])
+#           st.write(akurasi_table) 
+
+          st.text(classification_report(actual, prediksiaf)) 
+#           sns.heatmap(resultsaf, annot=True)
+
           
           
      elif genre == 'Ontology':
