@@ -11,7 +11,7 @@ if index0 is not None:
      index1 = st.sidebar.selectbox( 'What Dataset you choose?', x1.sheet_names)
 
      # Load data example (dari functional maupun nonfunctional)
-     st.subheader('Dataset parameters')
+     st.header('Dataset parameters')
      statement = fulldataset(index0, index1)
 
      # Get text to clean (dari row yang diinginkan)
@@ -25,7 +25,7 @@ if index0 is not None:
      text_df = pd.DataFrame([text_to_clean, cleaned_text],index=['ORIGINAL','CLEANED'], columns= statement['ID']).T
      st.write(text_df)
      
-     st.subheader('Traceability parameters')
+     st.header('Traceability parameters')
      genre = st.sidebar.radio("What do you choose?",('Information_Retrieval', 'Ontology', 'IR+LSA', 'IR+LDA'))
      if genre == 'Information_Retrieval':
           st.subheader('Information Retrieval Parameter')
