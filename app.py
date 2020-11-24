@@ -7,6 +7,8 @@ from cleaning import apply_cleaning, fulldataset
 from cleaning import l2_normalizer, build_lexicon, freq, numDocsContaining, idf, build_idf_matrix
 from sklearn.metrics import pairwise_distances
 from sklearn.metrics.pairwise import pairwise_kernels
+from sklearn.metrics import classification_report
+
 
 #file upload
 index0 = st.file_uploader("Choose a file") 
@@ -88,15 +90,13 @@ if index0 is not None:
           st.sidebar.write(correct/len(cosine_similaritas))
           
           klasterkm = kmeans.cluster_centers_
+          label_km = kmeans.labels_
           klaster_df = pd.DataFrame(klasterkm, columns= id_requirement)
           st.write(klaster_df)
           
-          from sklearn.metrics import classification_report
-          actual = cosine_similaritas
-          st.text(classification_report(actual, klaster_df)) 
+          actual = label_km
+          st.text(classification_report(actual, prediction)) 
 
-          
-          
      elif genre == 'Ontology':
           st.write("ontology.")
      elif genre == 'IR+LSA':
