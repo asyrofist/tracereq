@@ -69,11 +69,12 @@ if index0 is not None:
           X = np.array(hasil_tfidf[0:])
           Y = np.array(hasil_tfidf)
           cosine_similaritas = pairwise_kernels(X, Y, metric='linear')
-          st.write(cosine_similaritas)
+          cosine_df = pd.DataFrame(cosine_similaritas,index= id_requirement, columns= id_requirement)
+          st.write(cosine_df)
           
           from sklearn.cluster import KMeans
-          klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 20, 2)
-          kmeans = KMeans(n_clusters= len(id_requirement)) # You want cluster the passenger records into 2: Survived or Not survived
+          klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 20, len(id_requirement))
+          kmeans = KMeans(n_clusters= klaster_value) # You want cluster the passenger records into 2: Survived or Not survived
           kmeans_df = kmeans.fit(cosine_similaritas)
           st.subheader("K-Means Cluster")
           
@@ -87,7 +88,8 @@ if index0 is not None:
           st.sidebar.write(correct/len(cosine_similaritas))
           
           klasterkm = kmeans.cluster_centers_
-          st.write(klasterkm)
+          klaster_df = pd.DataFrame(klasterkm, columns= id_requirement)
+          st.write(klaster_df)
           
      elif genre == 'Ontology':
           st.write("ontology.")
