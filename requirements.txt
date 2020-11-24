@@ -4,3 +4,4 @@ pandas
 streamlit
 xlrd
 sklearn
+gensim
