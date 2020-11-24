@@ -84,7 +84,12 @@ if index0 is not None:
               prediction = kmeans.predict(predict_me)
               if prediction[0] == cosine_similaritas[i].all():
                   correct += 1
-          st.write(correct/len(cosine_similaritas))
+          st.sidebar.write(correct/len(cosine_similaritas))
+          
+          from sklearn.preprocessing import MinMaxScaler
+          scaler = MinMaxScaler()
+          XVSM_scaled = scaler.fit_transform(cosine_similaritas)
+          st.write(XVSM_scaled)
           
      elif genre == 'Ontology':
           st.write("ontology.")
