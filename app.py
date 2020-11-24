@@ -11,7 +11,7 @@ from sklearn.metrics import classification_report
 from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
-from nltk import wor_tokenize
+from nltk import word_tokenize
 
 #file upload
 index0 = st.file_uploader("Choose a file") 
