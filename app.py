@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+from sklearn.feature_extraction.text import CountVectorizer
 from cleaning import apply_cleaning, fulldataset
 
 #file upload
@@ -25,9 +26,16 @@ if index0 is not None:
      st.write(text_df)
      
      st.subheader('Traceability parameters')
-     genre = st.radio("What do you choose?",('Information_Retrieval', 'Ontology', 'IR+LSA', 'IR+LDA'))
+     genre = st.sidebar.radio("What do you choose?",('Information_Retrieval', 'Ontology', 'IR+LSA', 'IR+LDA'))
      if genre == 'Information_Retrieval':
-          st.write('IR.')
+          st.subheader('Information Retrieval Parameter')
+          count_vector = CountVectorizer(cleaned_text)
+          count_vector.fit(cleaned_text)
+          kolom_df = count_vector.get_feature_names())
+          doc_array = count_vector.transform(cleaned_text).toarray()
+          frequency_matrix = pd.DataFrame(doc_array, index= cleaned_text,columns= kolom_df)
+          st.write(frequency_matrix)
+          
      elif genre == 'Ontology':
           st.write("ontology.")
      elif genre == 'IR+LSA':
