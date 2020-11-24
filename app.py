@@ -74,7 +74,7 @@ if index0 is not None:
           from sklearn.cluster import KMeans
           klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 10, 2)
           kmeans = KMeans(n_clusters= klaster_value) # You want cluster the passenger records into 2: Survived or Not survived
-          kmeans.fit(cosine_similaritas)
+          kmeans_df = kmeans.fit(cosine_similaritas)
           st.subheader("K-Means Cluster")
           
           correct = 0
@@ -88,7 +88,7 @@ if index0 is not None:
           
           from sklearn.preprocessing import MinMaxScaler
           scaler = MinMaxScaler()
-          XVSM_scaled = scaler.fit_transform(cosine_similaritas)
+          XVSM_scaled = scaler.fit_transform(kmeans_df)
           st.write(XVSM_scaled)
           
      elif genre == 'Ontology':
