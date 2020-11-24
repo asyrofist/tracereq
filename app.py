@@ -8,6 +8,8 @@ from cleaning import l2_normalizer, build_lexicon, freq, numDocsContaining, idf,
 from sklearn.metrics import pairwise_distances
 from sklearn.metrics.pairwise import pairwise_kernels
 from sklearn.metrics import classification_report
+from sklearn.decomposition import TruncatedSVD
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 #file upload
@@ -95,10 +97,9 @@ if index0 is not None:
 
      elif genre == 'Ontology':
           st.write("ontology.")
+          
      elif genre == 'IR+LSA':
           st.write("LSA.")
-          from time import time
-          from sklearn.feature_extraction.text import TfidfVectorizer
           feature_value = st.sidebar.slider("Berapa Feature?", 10, 100, 1000)
           df_value = st.sidebar.slider("Berapa df?", 0.0, 0.9, 0.5)
           feature_value = st.sidebar.slider('Berapa Max Feature Model?', 0, 10, 1000)
