@@ -213,7 +213,7 @@ if index0 is not None:
           st.write(klaster_df)
           
      elif genre == 'IR+LDA':
-          st.sidebar.subheader("Parameter LSA")
+          st.sidebar.subheader("Parameter LDA")
           from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
           from sklearn.decomposition import NMF, LatentDirichletAllocation
           
