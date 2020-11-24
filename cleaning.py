@@ -8,6 +8,7 @@ from nltk.stem import PorterStemmer
 import matplotlib.pyplot as plt
 import pandas as pd
 import re 
+import numpy
 
 nltk.download('stopwords')
 nltk.download('punkt')
