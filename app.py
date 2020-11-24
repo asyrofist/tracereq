@@ -78,7 +78,7 @@ if index0 is not None:
           
           correct = 0
           for i in range(len(hasil_tfidf)):
-              predict_me = np.array(cosine_similaritas[i].astype(float))
+              predict_me = np.array(hasil_tfidf[i].astype(float))
               predict_me = predict_me.reshape(-1, len(predict_me))
               prediction = kmeans.predict(predict_me)
               if prediction[0] == hasil_tfidf[i].all():
