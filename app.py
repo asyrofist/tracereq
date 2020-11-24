@@ -4,7 +4,7 @@ import numpy as np
 import math
 import string #allows for format()
 from sklearn.feature_extraction.text import CountVectorizer
-from cleaning import apply_cleaning, fulldataset, 
+from cleaning import apply_cleaning, fulldataset
 # from cleaning import l2_normalizer, build_lexicon, freq, numDocsContaining, idf, build_idf_matrix
 
 
