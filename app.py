@@ -73,7 +73,7 @@ if index0 is not None:
           st.write(cosine_df)
           
           from sklearn.cluster import KMeans
-          klaster_value = st.sidebar.slider("Berapa Cluster?", 0, len(id_requirement))
+          klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 5, len(id_requirement))
           kmeans = KMeans(n_clusters= klaster_value) # You want cluster the passenger records into 2: Survived or Not survived
           kmeans_df = kmeans.fit(cosine_similaritas)
           st.subheader("K-Means Cluster")
