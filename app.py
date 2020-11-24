@@ -92,15 +92,6 @@ if index0 is not None:
           klasterkm = kmeans.cluster_centers_
           klaster_df = pd.DataFrame(klasterkm, columns= id_requirement)
           st.write(klaster_df)
-          
-          from sklearn.preprocessing import MinMaxScaler
-          scaler = MinMaxScaler()
-          XVSM_scaled = scaler.fit_transform(klaster_df)
-          st.write(XVSM_scaled)
-          
-          actual = klaster_df
-          resultsaf = classification_report(actual, XVSM_scaled)
-
 
      elif genre == 'Ontology':
           st.write("ontology.")
