@@ -143,7 +143,6 @@ if index0 is not None:
             for i in range(len(sentences)):
                  sentences[i] = TaggedDocument(words = sentences[i], tags = ['sent{}'.format(i)])    # converting each sentence into a TaggedDocument
             st.sidebar.subheader("Model Parameter")
-            st.dataframe(sentences)
             size_value = st.sidebar.slider('Berapa Size Model?', 0, 200, len(doc_feature))
             iterasi_value = st.sidebar.slider('Berapa Iterasi Model?', 0, 100, 10)
             window_value = st.sidebar.slider('Berapa Window Model?', 0, 10, 3)
@@ -151,6 +150,9 @@ if index0 is not None:
 
             model = Doc2Vec(documents = sentences, dm = dimension_value, size = size_value, window = window_value, min_count = 1, iter = iterasi_value, workers = Pool()._processes)
             model.init_sims(replace = True)
+            for words, tags in sentences:
+                    st.write(tags)
+#             st.dataframe(sentences)
 #             nilai_vektor = [model.infer_vector("sent{}".format(num)) for num in range(0, len(sentences))]
 #             id_requirement = fulldataset(index0, index1)['ID']
 #             df_vektor = pd.DataFrame(nilai_vektor, index=id_requirement, columns= ['vektor {}'.format(num) for num in range(0, size_value)])
