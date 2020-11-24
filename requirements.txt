@@ -5,4 +5,3 @@ streamlit
 xlrd
 sklearn
 gensim
-multiprocessing
