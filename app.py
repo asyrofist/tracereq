@@ -153,15 +153,9 @@ if index0 is not None:
           maxdf_value = st.sidebar.slider("Berapa df?", 0.0, 1.05, 0.95)
           mindf_value = st.sidebar.slider("Berapa df?", 0, 5, 2)
           feature_value = st.sidebar.slider('Berapa Max Feature Model?', 0, 10, 1000)
-          iterasi_value = st.sidebar.slider('Berapa Dimension Model?', 0, 200, 100)
-          random_value = st.sidebar.slider('Berapa Random Model?', 0, 300, 122)
-
-          feature_value = st.sidebar.slider("Berapa Feature?", 10, 100, 1000)
-          feature_value = st.sidebar.slider('Berapa Max Feature Model?', 0, 10, 1000)
           iterasi_value = st.sidebar.slider('Berapa Dimension Model?', 0, 200, 5)
           random_value = st.sidebar.slider('Berapa Random Model?', 0, 10, 1)
           n_components = st.sidebar.slider('berapa component?', 0, 20, 10)
-
           
           tf_vectorizer = CountVectorizer(max_df=maxdf_value, min_df=mindf_value,
                                 max_features= feature_value,
