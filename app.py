@@ -97,8 +97,8 @@ if index0 is not None:
           st.write(label_km)
           st.write(predict_km)
           
-#           actual = label_km
-#           st.text(classification_report(actual, prediction)) 
+          actual = label_km
+          st.text(classification_report(actual, predict_km)) 
 
      elif genre == 'Ontology':
           st.write("ontology.")
