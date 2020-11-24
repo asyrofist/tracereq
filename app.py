@@ -71,6 +71,21 @@ if index0 is not None:
           cosine_similaritas = pairwise_kernels(X, Y, metric='linear')
           st.write(cosine_similaritas)
           
+          from sklearn.cluster import KMeans
+          klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 10, 2)
+          kmeans = KMeans(n_clusters= klaster_value) # You want cluster the passenger records into 2: Survived or Not survived
+          kmeans.fit(cosine_similaritas)
+          st.subheader("K-Means Cluster")
+          
+          correct = 0
+          for i in range(len(cosine_similaritas)):
+              predict_me = np.array(cosine_similaritas[i].astype(float))
+              predict_me = predict_me.reshape(-1, len(predict_me))
+              prediction = kmeans.predict(predict_me)
+              if prediction[0] == cosine_similaritas[i].all():
+                  correct += 1
+          st.write(correct/len(cosine_similaritas))
+          
      elif genre == 'Ontology':
           st.write("ontology.")
      elif genre == 'IR+LSA':
