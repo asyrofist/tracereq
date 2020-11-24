@@ -1,5 +1,8 @@
 import pandas as pd
 import streamlit as st
+import numpy as np
+import math
+import string #allows for format()
 from sklearn.feature_extraction.text import CountVectorizer
 from cleaning import apply_cleaning, fulldataset
 
@@ -36,6 +39,46 @@ if index0 is not None:
           id_requirement = fulldataset(index0, index1)['ID']
           frequency_matrix = pd.DataFrame(doc_array, index= id_requirement, columns= kolom_df)
           st.write(frequency_matrix)
+          
+          # normalizer
+          def l2_normalizer(vec):
+              denom = np.sum([el**2 for el in vec])
+              return [(el / math.sqrt(denom)) for el in vec]
+
+          doc_term_matrix_l2 = []
+          for vec in doc_array:
+              doc_term_matrix_l2.append(l2_normalizer(vec))
+          
+          st.write(doc_term_matrix_l2)
+          
+          def build_lexicon(corpus):
+              lexicon = set()
+              for doc in corpus:
+                  lexicon.update([word for word in doc.split()])
+              return lexicon
+
+          def freq(term, document):
+            return document.split().count(term)
+
+          def numDocsContaining(word, doclist):
+              doccount = 0
+              for doc in doclist:
+                  if freq(word, doc) > 0:
+                      doccount +=1
+              return doccount 
+
+          def idf(word, doclist):
+              n_samples = len(doclist)
+              df = numDocsContaining(word, doclist)
+              return np.log(n_samples / 1+df)
+
+          vocabulary = build_lexicon(cleaned_text)
+          mydoclist = cleaned_text
+
+          my_idf_vector = [idf(word, mydoclist) for word in vocabulary]
+
+          st.write ('Our vocabulary vector is [' + ', '.join(list(vocabulary)) + ']')
+          st.write ('The inverse document frequency vector is [' + ', '.join(format(freq, 'f') for freq in my_idf_vector) + ']')
           
      elif genre == 'Ontology':
           st.write("ontology.")
