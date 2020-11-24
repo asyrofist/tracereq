@@ -156,6 +156,32 @@ if index0 is not None:
             df_vektor = pd.DataFrame(nilai_vektor, index=id_requirement, columns= ['vektor {}'.format(num) for num in range(0, size_value)])
             st.dataframe(df_vektor)
 
+            st.subheader("LDA using cosine")
+            X = np.array(nilai_vektor[0:])
+            Y = np.array(nilai_vektor)
+            cosine_similaritas = pairwise_kernels(X, Y, metric='linear')
+            cosine_df = pd.DataFrame(cosine_similaritas,index= id_requirement, columns= id_requirement)
+            st.write(cosine_df)
+
+            # klaster
+            klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 5, len(id_requirement))
+            kmeans = KMeans(n_clusters= klaster_value) # You want cluster the passenger records into 2: Survived or Not survived
+            kmeans_df = kmeans.fit(cosine_similaritas)
+
+            st.subheader("K-Means Cluster")
+            correct = 0
+            for i in range(len(cosine_similaritas)):
+                predict_me = np.array(cosine_similaritas[i].astype(float))
+                predict_me = predict_me.reshape(-1, len(predict_me))
+                prediction = kmeans.predict(predict_me)
+                if prediction[0] == cosine_similaritas[i].all():
+                  correct += 1
+            st.sidebar.write(correct/len(cosine_similaritas))
+
+            klasterkm = kmeans.cluster_centers_
+            klaster_df = pd.DataFrame(klasterkm, columns= id_requirement)
+            st.write(klaster_df)  
+               
 #             # Kmeans
 #             st.subheader('Kmeans parameters')
 #             true_k = len(nilai_vektor)
@@ -165,34 +191,6 @@ if index0 is not None:
 #             id_requirement = fulldataset(index0, index1)['ID']
 #             df_kmeans = pd.DataFrame(order_centroids, index= id_requirement, columns= ['vektor {}'.format(num) for num in range(0, size_value)])
 #             st.dataframe(df_kmeans)
-
-              
-             st.subheader("LDA using cosine")
-             X = np.array(nilai_vektor[0:])
-             Y = np.array(nilai_vektor)
-             cosine_similaritas = pairwise_kernels(X, Y, metric='linear')
-             cosine_df = pd.DataFrame(cosine_similaritas,index= id_requirement, columns= id_requirement)
-             st.write(cosine_df)
-
-             # klaster
-             klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 5, len(id_requirement))
-             kmeans = KMeans(n_clusters= klaster_value) # You want cluster the passenger records into 2: Survived or Not survived
-             kmeans_df = kmeans.fit(cosine_similaritas)
-
-             st.subheader("K-Means Cluster")
-             correct = 0
-             for i in range(len(cosine_similaritas)):
-                predict_me = np.array(cosine_similaritas[i].astype(float))
-                predict_me = predict_me.reshape(-1, len(predict_me))
-                prediction = kmeans.predict(predict_me)
-                if prediction[0] == cosine_similaritas[i].all():
-                  correct += 1
-             st.sidebar.write(correct/len(cosine_similaritas))
-
-             klasterkm = kmeans.cluster_centers_
-             klaster_df = pd.DataFrame(klasterkm, columns= id_requirement)
-             st.write(klaster_df)
-                    
                     
      elif genre == 'IR+LSA':
           st.sidebar.subheader("Parameter LSA")
