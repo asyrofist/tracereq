@@ -57,3 +57,39 @@ def fulldataset(index0, index1):
   x1 = pd.ExcelFile(index0)
   dfs = {sh:x1.parse(sh) for sh in x1.sheet_names}[index1]
   return dfs
+
+# normalizer
+def l2_normalizer(vec):
+    denom = np.sum([el**2 for el in vec])
+    return [(el / math.sqrt(denom)) for el in vec]
+
+# doc_term_matrix_l2 = []
+# for vec in doc_array:
+#     doc_term_matrix_l2.append(l2_normalizer(vec))
+
+def build_lexicon(corpus):
+    lexicon = set()
+    for doc in corpus:
+        lexicon.update([word for word in doc.split()])
+    return lexicon
+
+def freq(term, document):
+  return document.split().count(term)
+
+def numDocsContaining(word, doclist):
+    doccount = 0
+    for doc in doclist:
+        if freq(word, doc) > 0:
+            doccount +=1
+    return doccount 
+
+def idf(word, doclist):
+    n_samples = len(doclist)
+    df = numDocsContaining(word, doclist)
+    return np.log(n_samples / 1+df)
+
+def build_idf_matrix(idf_vector):
+    idf_mat = np.zeros((len(idf_vector), len(idf_vector)))
+    np.fill_diagonal(idf_mat, idf_vector)
+    return idf_mat
+
