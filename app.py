@@ -151,7 +151,7 @@ if index0 is not None:
           
           feature_value = st.sidebar.slider("Berapa Feature?", 10, 100, 1000)
           maxdf_value = st.sidebar.slider("Berapa df?", 0.0, 1.05, 0.95)
-          mindf_value = st.sidebar.slider("Berapa df?", 0.0, 5, 2)
+          mindf_value = st.sidebar.slider("Berapa df?", 0, 5, 2)
           feature_value = st.sidebar.slider('Berapa Max Feature Model?', 0, 10, 1000)
           iterasi_value = st.sidebar.slider('Berapa Dimension Model?', 0, 200, 100)
           random_value = st.sidebar.slider('Berapa Random Model?', 0, 300, 122)
