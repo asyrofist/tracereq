@@ -1,4 +1,4 @@
-# Simple-Traceability-and-Identifying-The-Quality-Aspects-of-Requirements-in-SRS-Documents
+# Simple-Traceability-SRS-Documents
 this is repository how to make simple traceability from requirement documents
 
 The Improvement Impact Performance of Face Detection Using YOLO Algorithm described in [our paper at EECSI2020](https://ieeexplore.ieee.org/document/9251905). Please kindly cite the following paper when you use this tool. It would also be appreciated if you send me a courtesy [website](http://rakha.asyrofi.com/), so I could survey what kind of tasks the tool is used for. 
