@@ -76,9 +76,14 @@ if index0 is not None:
           mydoclist = cleaned_text
 
           my_idf_vector = [idf(word, mydoclist) for word in vocabulary]
+          
+          def build_idf_matrix(idf_vector):
+              idf_mat = np.zeros((len(idf_vector), len(idf_vector)))
+              np.fill_diagonal(idf_mat, idf_vector)
+              return idf_mat
 
-          st.write ('Our vocabulary vector is [' + ', '.join(list(vocabulary)) + ']')
-          st.write ('The inverse document frequency vector is [' + ', '.join(format(freq, 'f') for freq in my_idf_vector) + ']')
+          my_idf_matrix = build_idf_matrix(my_idf_vector)
+          st.write(my_idf_matrix)
           
      elif genre == 'Ontology':
           st.write("ontology.")
