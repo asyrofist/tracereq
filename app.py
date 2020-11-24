@@ -86,10 +86,8 @@ if index0 is not None:
                   correct += 1
           st.sidebar.write(correct/len(cosine_similaritas))
           
-          from sklearn.preprocessing import MinMaxScaler
-          scaler = MinMaxScaler()
-#           XVSM_scaled = scaler.fit_transform(cosine_similaritas)
-          st.write(prediction)
+          klasterkm = modelkm.cluster_centers_
+          st.write(klasterkm)
           
      elif genre == 'Ontology':
           st.write("ontology.")
