@@ -170,7 +170,7 @@ if index0 is not None:
             for i in range(len(order_centroids)):
                 predict_me = np.array(order_centroids[i].astype(float))
                 predict_me = predict_me.reshape(-1, len(predict_me))
-                prediction = kmeans.predict(predict_me)
+                prediction = KMeans.predict(predict_me)
                 if prediction[0] == order_centroids[i].all():
                    correct += 1
             st.sidebar.write(correct/len(order_centroids))
