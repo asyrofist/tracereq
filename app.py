@@ -70,27 +70,20 @@ if index0 is not None:
           frequency_TFIDF = pd.DataFrame(hasil_tfidf,index= id_requirement, columns= kolom_df)
           st.write(frequency_TFIDF)
           
-          st.subheader("VSM using cosine")
-          X = np.array(hasil_tfidf[0:])
-          Y = np.array(hasil_tfidf)
-          cosine_similaritas = pairwise_kernels(X, Y, metric='linear')
-          cosine_df = pd.DataFrame(cosine_similaritas,index= id_requirement, columns= id_requirement)
-          st.write(cosine_df)
-          
           # klaster
-          klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 5, len(id_requirement))
+          klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 20, len(id_requirement))
           kmeans = KMeans(n_clusters= klaster_value) # You want cluster the passenger records into 2: Survived or Not survived
-          kmeans_df = kmeans.fit(cosine_similaritas)
+          kmeans_df = kmeans.fit(hasil_tfidf)
           st.subheader("K-Means Cluster")
           
           correct = 0
-          for i in range(len(cosine_similaritas)):
+          for i in range(len(hasil_tfidf)):
               predict_me = np.array(cosine_similaritas[i].astype(float))
               predict_me = predict_me.reshape(-1, len(predict_me))
               prediction = kmeans.predict(predict_me)
-              if prediction[0] == cosine_similaritas[i].all():
+              if prediction[0] == hasil_tfidf[i].all():
                   correct += 1
-          st.sidebar.write(correct/len(cosine_similaritas))
+          st.sidebar.write(correct/len(hasil_tfidf))
           
           klasterkm = kmeans.cluster_centers_
           klaster_df = pd.DataFrame(klasterkm, columns= id_requirement)
