@@ -100,6 +100,7 @@ if index0 is not None:
           st.write("ontology.")
           
      elif genre == 'IR+LSA':
+          st.sidebar.subheader("Parameter LSA")
           feature_value = st.sidebar.slider("Berapa Feature?", 10, 100, 1000)
           df_value = st.sidebar.slider("Berapa df?", 0.0, 0.9, 0.5)
           feature_value = st.sidebar.slider('Berapa Max Feature Model?', 0, 10, 1000)
@@ -145,7 +146,7 @@ if index0 is not None:
           st.write(klaster_df)
           
      elif genre == 'IR+LDA':
-          st.write("LDA.")
+          st.sidebar.subheader("Parameter LSA")
           from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
           from sklearn.decomposition import NMF, LatentDirichletAllocation
           
