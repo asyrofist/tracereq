@@ -1,5 +1,6 @@
 # Simple-Traceability-SRS-Documents
-this is repository how to make simple traceability from requirement documents, you can check this out to [live demo](https://share.streamlit.io/asyrofist/simple-traceability-srs-document/main/app.py)
+this is repository how to make simple traceability from requirement documents, 
+you can check this out to [live demo](https://wordembed.herokuapp.com/)
 ![Example of live coding an app in Streamlit|635x380](https://github.com/asyrofist/Simple-Traceability-SRS-Document/blob/main/streamlit-app-2020-11-24-18-11-07.gif)
 
 Comparative Studies of Several Methods for Building Simple Traceability and Identifying The Quality Aspects of Requirements in SRS Documents described in [our paper at EECCIS2020](https://ieeexplore.ieee.org/document/9263479). Please kindly cite the following paper when you use this tool. It would also be appreciated if you send me a courtesy [website](http://rakha.asyrofi.com/), so I could survey what kind of tasks the tool is used for. 
