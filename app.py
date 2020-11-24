@@ -85,6 +85,24 @@ if index0 is not None:
           my_idf_matrix = build_idf_matrix(my_idf_vector)
           st.write(my_idf_matrix)
           
+          doc_term_matrix_tfidf = []
+
+          #performing tf-idf matrix multiplication
+          for tf_vector in doc_array:
+              doc_term_matrix_tfidf.append(np.dot(tf_vector, my_idf_matrix))
+
+          #normalizing
+          doc_term_matrix_tfidf_l2 = []
+          for tf_vector in doc_term_matrix_tfidf:
+              doc_term_matrix_tfidf_l2.append(l2_normalizer(tf_vector))
+
+          st.write (vocabulary)
+          st.write (np.matrix(doc_term_matrix_tfidf_l2))
+          
+          
+
+          # np.matrix() just to make it easier to look at
+          
      elif genre == 'Ontology':
           st.write("ontology.")
      elif genre == 'IR+LSA':
