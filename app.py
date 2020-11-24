@@ -3,12 +3,11 @@ from cleaning import apply_cleaning
 
 uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
-     # To read file as bytes:
-     bytes_data = uploaded_file.read()
-     st.write(bytes_data)
+     # Can be used wherever a "file-like" object is accepted:
+     data_df = pd.read_csv(uploaded_file)
 
      # Load data example (dari functional maupun nonfunctional)
-     statement = bytes_data
+     statement = data_df
 
      # Get text to clean (dari row yang diinginkan)
      text_to_clean = list(statement['Requirement Statement'])
