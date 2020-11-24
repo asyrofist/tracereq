@@ -90,15 +90,13 @@ if index0 is not None:
           st.sidebar.write(correct/len(cosine_similaritas))
           
           klasterkm = kmeans.cluster_centers_
-          label_km = kmeans.labels_
-          predict_km = kmeans.predict(cosine_similaritas)
           klaster_df = pd.DataFrame(klasterkm, columns= id_requirement)
           st.write(klaster_df)
-          st.write(label_km)
-          st.write(predict_km)
           
-          actual = label_km
-          st.text(classification_report(actual, predict_km)) 
+          from sklearn.preprocessing import MinMaxScaler
+          scaler = MinMaxScaler()
+          XVSM_scaled = scaler.fit_transform(klaster_df)
+          st.write(XVSM_scaled)
 
      elif genre == 'Ontology':
           st.write("ontology.")
