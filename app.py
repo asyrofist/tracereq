@@ -97,5 +97,25 @@ if index0 is not None:
           st.write("ontology.")
      elif genre == 'IR+LSA':
           st.write("LSA.")
+          from time import time
+          from sklearn.feature_extraction.text import TfidfVectorizer
+          feature_value = st.sidebar.slider("Berapa Feature?", 10, 100, 1000)
+          df_value = st.sidebar.slider("Berapa df?", 0.0, 0.9, 0.5)
+          feature_value = st.sidebar.slider('Berapa Max Feature Model?', 0, 10, 1000)
+          iterasi_value = st.sidebar.slider('Berapa Dimension Model?', 0, 200, 100)
+          random_value = st.sidebar.slider('Berapa Random Model?', 0, 300, 122)
+          
+          vectorizer = TfidfVectorizer(stop_words='english', 
+          max_features= feature_value, # keep top 1000 terms 
+          max_df = df_value, 
+          smooth_idf=True)
+          X = vectorizer.fit_transform(cleaned_text)
+          fitur_id = vectorizer.get_feature_names()
+          svd_model = TruncatedSVD(n_components= (X.shape[0]), algorithm='randomized', n_iter= iterasi_value, random_state= random_value)
+          svd_model.fit(X)
+          jumlah_kata = svd_model.components_
+          tabel_lsa = pd.DataFrame(jumlah_kata, index= id_requirement, columns= fitur_id)
+          st.dataframe(tabel_lsa)
+          
      elif genre == 'IR+LDA':
           st.write("LDA.")
