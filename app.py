@@ -1,14 +1,17 @@
 import pandas as pd
 import streamlit as st
-from cleaning import apply_cleaning
+from cleaning import apply_cleaning, fulldataset
 
-uploaded_file = st.file_uploader("Choose a file")
-if uploaded_file is not None:
-     # Can be used wherever a "file-like" object is accepted:
-     data_df = pd.read_csv(uploaded_file)
+#file upload
+index0 = st.file_uploader("Choose a file") 
+if index0 is not None:
+     st.sidebar.header('Dataset Parameter')
+     x1 = pd.ExcelFile(index0)
+     index1 = st.sidebar.selectbox( 'What Dataset you choose?', x1.sheet_names)
 
      # Load data example (dari functional maupun nonfunctional)
-     statement = data_df
+     st.subheader('Dataset parameters')
+     statement = fulldataset(index0, index1)
 
      # Get text to clean (dari row yang diinginkan)
      text_to_clean = list(statement['Requirement Statement'])
