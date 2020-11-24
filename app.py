@@ -105,7 +105,7 @@ if index0 is not None:
               prediction = kmeans.predict(predict_me)
               if prediction[0] == XVSM_scaled[i].all():
                   correct += 1
-          st.write(correct/len(XVSM_scaled))
+          st.write(correct/len(cosine_similaritas))
 
 
      elif genre == 'Ontology':
