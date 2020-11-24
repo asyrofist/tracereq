@@ -71,9 +71,9 @@ if index0 is not None:
           st.write(frequency_TFIDF)
           
           # klaster
-          klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 20, len(kolom_df))
+          klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 20, len(id_requirement))
           kmeans = KMeans(n_clusters= klaster_value) # You want cluster the passenger records into 2: Survived or Not survived
-          kmeans_df = kmeans.fit(hasil_tfidf)
+          kmeans_df = kmeans.fit()
           st.subheader("K-Means Cluster")
           
           correct = 0
