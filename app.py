@@ -16,6 +16,11 @@ from gensim.models.doc2vec import TaggedDocument
 from gensim.models import Doc2Vec
 from multiprocessing import Pool
 
+st.write("""
+# Simple Traceability SRS Document
+Berikut ini algoritma yang digunakan untuk pengukuran keterlacakan pada dokumen
+""")
+
 #file upload
 index0 = st.file_uploader("Choose a file") 
 if index0 is not None:
