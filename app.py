@@ -31,7 +31,7 @@ if index0 is not None:
           st.subheader('Information Retrieval Parameter')
           count_vector = CountVectorizer(cleaned_text)
           count_vector.fit(cleaned_text)
-          kolom_df = count_vector.get_feature_names())
+          kolom_df = count_vector.get_feature_names()
           doc_array = count_vector.transform(cleaned_text).toarray()
           frequency_matrix = pd.DataFrame(doc_array, index= cleaned_text,columns= kolom_df)
           st.write(frequency_matrix)
