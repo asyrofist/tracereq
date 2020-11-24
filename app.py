@@ -143,6 +143,7 @@ if index0 is not None:
             for i in range(len(sentences)):
                  sentences[i] = TaggedDocument(words = sentences[i], tags = ['sent{}'.format(i)])    # converting each sentence into a TaggedDocument
             st.sidebar.subheader("Model Parameter")
+            pd.DataFrame(sentences)
             size_value = st.sidebar.slider('Berapa Size Model?', 0, 200, len(doc_feature))
             iterasi_value = st.sidebar.slider('Berapa Iterasi Model?', 0, 100, 10)
             window_value = st.sidebar.slider('Berapa Window Model?', 0, 10, 3)
