@@ -12,6 +12,9 @@ from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 from nltk import word_tokenize
+from gensim.models.doc2vec import TaggedDocument
+from gensim.models import Doc2Vec
+
 
 #file upload
 index0 = st.file_uploader("Choose a file") 
