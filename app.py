@@ -91,10 +91,11 @@ if index0 is not None:
           
           klasterkm = kmeans.cluster_centers_
           label_km = kmeans.labels_
+          predict_km = kmeans.predict(cosine_similaritas)
           klaster_df = pd.DataFrame(klasterkm, columns= id_requirement)
           st.write(klaster_df)
           st.write(label_km)
-          st.write(prediction)
+          st.write(predict_km)
           
 #           actual = label_km
 #           st.text(classification_report(actual, prediction)) 
