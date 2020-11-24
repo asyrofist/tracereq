@@ -83,7 +83,6 @@ if index0 is not None:
               return idf_mat
 
           my_idf_matrix = build_idf_matrix(my_idf_vector)
-          st.write(my_idf_matrix)
           
           doc_term_matrix_tfidf = []
 
@@ -96,9 +95,9 @@ if index0 is not None:
           for tf_vector in doc_term_matrix_tfidf:
               doc_term_matrix_tfidf_l2.append(l2_normalizer(tf_vector))
 
-          st.write (vocabulary)
-          st.write (np.matrix(doc_term_matrix_tfidf_l2))
           
+          hasil_tfidf = np.matrix(doc_term_matrix_tfidf_l2)
+          st.write (hasil_tfidf)
           
 
           # np.matrix() just to make it easier to look at
