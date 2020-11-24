@@ -79,7 +79,7 @@ if index0 is not None:
           
           correct = 0
           for i in range(len(cosine_similaritas)):
-              predict_me = np.array(kmeans_df[i].astype(float))
+              predict_me = np.array(cosine_similaritas[i].astype(float))
               predict_me = predict_me.reshape(-1, len(predict_me))
               prediction = kmeans.predict(predict_me)
               if prediction[0] == cosine_similaritas[i].all():
@@ -88,7 +88,7 @@ if index0 is not None:
           
           from sklearn.preprocessing import MinMaxScaler
           scaler = MinMaxScaler()
-          XVSM_scaled = scaler.fit_transform(cosine_similaritas)
+          XVSM_scaled = scaler.fit_transform(prediction)
           st.write(XVSM_scaled)
           
      elif genre == 'Ontology':
