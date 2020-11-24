@@ -1,7 +1,6 @@
 import pandas as pd
 import streamlit as st
 import numpy as np
-import math
 import string #allows for format()
 from sklearn.feature_extraction.text import CountVectorizer
 from cleaning import apply_cleaning, fulldataset
