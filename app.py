@@ -8,9 +8,6 @@ if uploaded_file is not None:
      st.write(bytes_data)
 
     # Load data example (dari functional maupun nonfunctional)
-    statement = dataset2
-
-    # Truncate data for example
     statement = bytes_data
 
     # Get text to clean (dari row yang diinginkan)
