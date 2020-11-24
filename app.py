@@ -98,7 +98,7 @@ if index0 is not None:
           XVSM_scaled = scaler.fit_transform(klaster_df)
           st.write(XVSM_scaled)
           
-          actual = cosine_similaritas
+          actual = klaster_df
           resultsaf = classification_report(actual, XVSM_scaled)
 
 
