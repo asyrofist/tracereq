@@ -97,7 +97,70 @@ if index0 is not None:
           st.write(klaster_df)
 
      elif genre == 'Ontology':
-          st.write("ontology.")
+            # document bag of words
+            count_vector = CountVectorizer(cleaned_text)
+            count_vector.fit(cleaned_text)
+            doc_array = count_vector.transform(cleaned_text).toarray()            
+            doc_feature = count_vector.get_feature_names()
+            st.subheader('BOW parameters')
+            id_requirement = fulldataset(index0, index1)['ID']
+            bow_matrix = pd.DataFrame(doc_array, index= id_requirement, columns= doc_feature)
+            st.dataframe(bow_matrix)
+
+            # tfidf          
+            doc_term_matrix_l2 = []
+            # document l2 normalizaer
+            for vec in doc_array:
+                doc_term_matrix_l2.append(l2_normalizer(vec))
+
+            # vocabulary & idf matrix 
+            vocabulary = build_lexicon(cleaned_text)
+            mydoclist = cleaned_text
+            my_idf_vector = [idf(word, mydoclist) for word in vocabulary]
+            my_idf_matrix = build_idf_matrix(my_idf_vector)
+
+            doc_term_matrix_tfidf = []
+            #performing tf-idf matrix multiplication
+            for tf_vector in doc_array:
+                doc_term_matrix_tfidf.append(np.dot(tf_vector, my_idf_matrix))
+
+            doc_term_matrix_tfidf_l2 = []
+            #normalizing
+            for tf_vector in doc_term_matrix_tfidf:
+                 doc_term_matrix_tfidf_l2.append(l2_normalizer(tf_vector))
+
+            hasil_tfidf = np.matrix(doc_term_matrix_tfidf_l2)
+            st.subheader('TFIDF parameters')
+            tfidf_matrix = pd.DataFrame(hasil_tfidf, index= id_requirement, columns= doc_feature)
+            st.dataframe(tfidf_matrix)
+
+            #doc2vec
+            st.subheader('doc2vec parameters')
+            sentences = [word_tokenize(num) for num in cleaned_text]
+            for i in range(len(sentences)):
+                 sentences[i] = TaggedDocument(words = sentences[i], tags = ['sent{}'.format(i)])    # converting each sentence into a TaggedDocument
+            st.sidebar.subheader("Model Parameter")
+            size_value = st.sidebar.slider('Berapa Size Model?', 0, 200, len(doc_feature))
+            iterasi_value = st.sidebar.slider('Berapa Iterasi Model?', 0, 100, 10)
+            window_value = st.sidebar.slider('Berapa Window Model?', 0, 10, 3)
+            dimension_value = st.sidebar.slider('Berapa Dimension Model', 0, 10, 1)
+
+            model = Doc2Vec(documents = sentences, dm = dimension_value, size = size_value, window = window_value, min_count = 1, iter = iterasi_value, workers = Pool()._processes)
+            model.init_sims(replace = True)
+            nilai_vektor = [model.infer_vector("sent{}".format(num)) for num in range(0, len(cleaned_text))]
+            id_requirement = fulldataset(index0, index1)['ID']
+            df_vektor = pd.DataFrame(nilai_vektor, index=id_requirement, columns= ['vektor {}'.format(num) for num in range(0, size_value)])
+            st.dataframe(df_vektor)
+
+            # Kmeans
+            st.subheader('Kmeans parameters')
+            true_k = len(nilai_vektor)
+            model = KMeans(n_clusters=true_k, init='k-means++', max_iter=iterasi_value, n_init=1)
+            model.fit(nilai_vektor)
+            order_centroids = model.cluster_centers_.argsort()[:, ::-1]
+            id_requirement = fulldataset(index0, index1)['ID']
+            df_kmeans = pd.DataFrame(order_centroids, index= id_requirement, columns= ['vektor {}'.format(num) for num in range(0, size_value)])
+            st.dataframe(df_kmeans)
           
      elif genre == 'IR+LSA':
           st.sidebar.subheader("Parameter LSA")
