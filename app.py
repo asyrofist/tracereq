@@ -5,6 +5,8 @@ import string #allows for format()
 from sklearn.feature_extraction.text import CountVectorizer
 from cleaning import apply_cleaning, fulldataset
 from cleaning import l2_normalizer, build_lexicon, freq, numDocsContaining, idf, build_idf_matrix
+from sklearn.metrics import pairwise_distances
+from sklearn.metrics.pairwise import pairwise_kernels
 
 #file upload
 index0 = st.file_uploader("Choose a file") 
@@ -62,7 +64,13 @@ if index0 is not None:
           st.subheader("l2 tfidf normalizer")
           frequency_TFIDF = pd.DataFrame(hasil_tfidf,index= id_requirement, columns= kolom_df)
           st.write(frequency_TFIDF)
-
+          
+          st.subheader("VSM using cosine")
+          X = np.array(hasil_tfidf[0:])
+          Y = np.array(hasil_tfidf)
+          cosine_similaritas = pairwise_kernels(X, Y, metric='linear')
+          st.write(cosine_similaritas)
+          
      elif genre == 'Ontology':
           st.write("ontology.")
      elif genre == 'IR+LSA':
