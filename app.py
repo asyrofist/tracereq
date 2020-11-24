@@ -33,7 +33,8 @@ if index0 is not None:
           count_vector.fit(cleaned_text)
           kolom_df = count_vector.get_feature_names()
           doc_array = count_vector.transform(cleaned_text).toarray()
-          frequency_matrix = pd.DataFrame(doc_array, index= cleaned_text,columns= kolom_df)
+          id_requirement = fulldataset(index0, index1)['ID']
+          frequency_matrix = pd.DataFrame(doc_array, index= id_requirement, columns= kolom_df)
           st.write(frequency_matrix)
           
      elif genre == 'Ontology':
