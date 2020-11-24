@@ -10,6 +10,7 @@ from sklearn.metrics.pairwise import pairwise_kernels
 from sklearn.metrics import classification_report
 from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.cluster import KMeans
 
 
 #file upload
@@ -76,7 +77,7 @@ if index0 is not None:
           cosine_df = pd.DataFrame(cosine_similaritas,index= id_requirement, columns= id_requirement)
           st.write(cosine_df)
           
-          from sklearn.cluster import KMeans
+          # klaster
           klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 5, len(id_requirement))
           kmeans = KMeans(n_clusters= klaster_value) # You want cluster the passenger records into 2: Survived or Not survived
           kmeans_df = kmeans.fit(cosine_similaritas)
@@ -117,6 +118,25 @@ if index0 is not None:
           jumlah_kata = svd_model.components_
           tabel_lsa = pd.DataFrame(jumlah_kata, index= id_requirement, columns= fitur_id)
           st.dataframe(tabel_lsa)
+          
+          # klaster
+          klaster_value = st.sidebar.slider("Berapa Cluster?", 0, 5, len(id_requirement))
+          kmeans = KMeans(n_clusters= klaster_value) # You want cluster the passenger records into 2: Survived or Not survived
+          kmeans_df = kmeans.fit(jumlah_kata)
+          st.subheader("K-Means Cluster")
+          
+          correct = 0
+          for i in range(len(jumlah_kata)):
+              predict_me = np.array(cosine_similaritas[i].astype(float))
+              predict_me = predict_me.reshape(-1, len(predict_me))
+              prediction = kmeans.predict(predict_me)
+              if prediction[0] == jumlah_kata[i].all():
+                  correct += 1
+          st.sidebar.write(correct/len(jumlah_kata))
+          
+          klasterkm = kmeans.cluster_centers_
+          klaster_df = pd.DataFrame(klasterkm, columns= id_requirement)
+          st.write(klaster_df)
           
      elif genre == 'IR+LDA':
           st.write("LDA.")
