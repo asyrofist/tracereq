@@ -29,6 +29,8 @@ if index0 is not None:
      st.write(text_df)
      
      st.header('Traceability parameters')
+     id_requirement = fulldataset(index0, index1)['ID']
+     
      genre = st.sidebar.radio("What do you choose?",('Information_Retrieval', 'Ontology', 'IR+LSA', 'IR+LDA'))
      if genre == 'Information_Retrieval':
           st.subheader("bag of words")
@@ -36,7 +38,6 @@ if index0 is not None:
           count_vector.fit(cleaned_text)
           kolom_df = count_vector.get_feature_names()
           doc_array = count_vector.transform(cleaned_text).toarray()
-          id_requirement = fulldataset(index0, index1)['ID']
           frequency_matrix = pd.DataFrame(doc_array, index= id_requirement, columns= kolom_df)
           st.write(frequency_matrix)
           
@@ -93,7 +94,7 @@ if index0 is not None:
           hasil_tfidf = np.matrix(doc_term_matrix_tfidf_l2)
           
           st.subheader("l2 tfidf normalizer")
-          frequency_TFIDF = pd.DataFrame(hasil_tfidf,index=cleaned_text,columns=count_vector.get_feature_names())
+          frequency_TFIDF = pd.DataFrame(hasil_tfidf,index= id_requirement, columns= kolom_df)
           st.write(frequency_TFIDF)
 
      elif genre == 'Ontology':
