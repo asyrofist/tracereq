@@ -51,3 +51,9 @@ def apply_cleaning(hasil):
     for element in hasil:
         cleaned_hasil.append(text_cleaning(element))
     return cleaned_hasil
+
+# fungsi ini digunakan untuk mengecek data secara keseluruhan dataset tertentu
+def fulldataset(index0, index1):
+  x1 = pd.ExcelFile(index0)
+  dfs = {sh:x1.parse(sh) for sh in x1.sheet_names}[index1]
+  return dfs
