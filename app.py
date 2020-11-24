@@ -170,7 +170,7 @@ if index0 is not None:
           lda.fit(tf)
           tf_feature_names = tf_vectorizer.get_feature_names()
           jumlah_kata = lda.components_
-          tabel_lsa = pd.DataFrame(jumlah_kata, index= id_requirement, columns= tf_feature_names)
+          tabel_lsa = pd.DataFrame(jumlah_kata, columns= tf_feature_names)
           st.dataframe(tabel_lsa)
 
 
