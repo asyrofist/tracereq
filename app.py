@@ -88,7 +88,7 @@ if index0 is not None:
           
           from sklearn.preprocessing import MinMaxScaler
           scaler = MinMaxScaler()
-          XVSM_scaled = scaler.fit_transform(prediction)
+          XVSM_scaled = scaler.fit_transform(cosine_similaritas)
           st.write(XVSM_scaled)
           
      elif genre == 'Ontology':
