@@ -150,8 +150,8 @@ if index0 is not None:
 
             model = Doc2Vec(documents = sentences, dm = dimension_value, size = size_value, window = window_value, min_count = 1, iter = iterasi_value, workers = Pool()._processes)
             model.init_sims(replace = True)
-            for num in sentences:
-                    st.write(num)
+            for num, sent in sentences:
+                    st.write(sent)
 #             nilai_vektor = [model.infer_vector("sent{}".format(num)) for num in enumerate(cleaned_text)]
 #             nilai_vektor = [model.infer_vector([tags for words, tags in sentences])]
 #             st.dataframe(sentences)
