@@ -86,7 +86,7 @@ if index0 is not None:
                   correct += 1
           st.sidebar.write(correct/len(cosine_similaritas))
           
-          klasterkm = modelkm.cluster_centers_
+          klasterkm = kmeans.cluster_centers_
           st.write(klasterkm)
           
      elif genre == 'Ontology':
