@@ -70,7 +70,7 @@ if index0 is not None:
           frequency_TFIDF = pd.DataFrame(hasil_tfidf,index= id_requirement, columns= kolom_df)
           st.write(frequency_TFIDF)
           
-          st.subheader("VSM using cosine")
+          st.subheader("IR using cosine")
           X = np.array(hasil_tfidf[0:])
           Y = np.array(hasil_tfidf)
           cosine_similaritas = pairwise_kernels(X, Y, metric='linear')
@@ -100,7 +100,6 @@ if index0 is not None:
           st.write("ontology.")
           
      elif genre == 'IR+LSA':
-          st.write("LSA.")
           feature_value = st.sidebar.slider("Berapa Feature?", 10, 100, 1000)
           df_value = st.sidebar.slider("Berapa df?", 0.0, 0.9, 0.5)
           feature_value = st.sidebar.slider('Berapa Max Feature Model?', 0, 10, 1000)
@@ -119,7 +118,7 @@ if index0 is not None:
           tabel_lsa = pd.DataFrame(jumlah_kata, index= id_requirement, columns= fitur_id)
           st.dataframe(tabel_lsa)
           
-          st.subheader("VSM using cosine")
+          st.subheader("LSA using cosine")
           X = np.array(jumlah_kata[0:])
           Y = np.array(jumlah_kata)
           cosine_similaritas = pairwise_kernels(X, Y, metric='linear')
