@@ -146,3 +146,39 @@ if index0 is not None:
           
      elif genre == 'IR+LDA':
           st.write("LDA.")
+          from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+          from sklearn.decomposition import NMF, LatentDirichletAllocation
+          
+          feature_value = st.sidebar.slider("Berapa Feature?", 10, 100, 1000)
+          maxdf_value = st.sidebar.slider("Berapa df?", 0.0, 1.05, 0.95)
+          mindf_value = st.sidebar.slider("Berapa df?", 0.0, 5, 2)
+          feature_value = st.sidebar.slider('Berapa Max Feature Model?', 0, 10, 1000)
+          iterasi_value = st.sidebar.slider('Berapa Dimension Model?', 0, 200, 100)
+          random_value = st.sidebar.slider('Berapa Random Model?', 0, 300, 122)
+
+          feature_value = st.sidebar.slider("Berapa Feature?", 10, 100, 1000)
+          feature_value = st.sidebar.slider('Berapa Max Feature Model?', 0, 10, 1000)
+          iterasi_value = st.sidebar.slider('Berapa Dimension Model?', 0, 200, 5)
+          random_value = st.sidebar.slider('Berapa Random Model?', 0, 10, 1)
+          n_components = st.sidebar.slider('berapa component?', 0, 20, 10)
+
+          
+          tf_vectorizer = CountVectorizer(max_df=maxdf_value, min_df=mindf_value,
+                                max_features= feature_value,
+                                stop_words='english')
+          tf = tf_vectorizer.fit_transform(cleaned_text)
+          
+          lda = LatentDirichletAllocation(n_components= n_components, max_iter= iterasi_value,
+                                learning_method='online',
+                                learning_offset= 50.,
+                                random_state= random_value)
+          
+          lda.fit(tf)
+          tf_feature_names = tf_vectorizer.get_feature_names()
+          jumlah_kata = lda.components_
+          tabel_lsa = pd.DataFrame(jumlah_kata, index= id_requirement, columns= tf_feature_names)
+          st.dataframe(tabel_lsa)
+
+
+       
+          
