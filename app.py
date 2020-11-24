@@ -150,7 +150,8 @@ if index0 is not None:
 
             model = Doc2Vec(documents = sentences, dm = dimension_value, size = size_value, window = window_value, min_count = 1, iter = iterasi_value, workers = Pool()._processes)
             model.init_sims(replace = True)
-            nilai_vektor = [model.infer_vector("sent{}".format(num)) for num in range(0, len(cleaned_text))]
+            nilai_vektor = model.infer_vector(doc_words= sentences, steps=20, alpha=0.025)
+#             nilai_vektor = [model.infer_vector("sent{}".format(num)) for num in range(0, len(cleaned_text))]
 #             id_requirement = fulldataset(index0, index1)['ID']
 #             df_vektor = pd.DataFrame(nilai_vektor, index=id_requirement, columns= ['vektor {}'.format(num) for num in range(0, size_value)])
 #             st.dataframe(df_vektor)
