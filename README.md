@@ -1,4 +1,5 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5528405.svg)](https://doi.org/10.5281/zenodo.5528405)
+![image](https://visitor-badge.laobi.icu/badge?page_id=asyrofist/Simple-Traceability-SRS-Document) 
 
 # Simple-Traceability-SRS-Documents
 Author  | [Rakha Asyrofi](https://scholar.google.com/citations?user=WN9T5UUAAAAJ&hl=id&oi=ao)
