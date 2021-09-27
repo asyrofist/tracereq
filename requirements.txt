@@ -6,3 +6,4 @@ xlrd
 sklearn
 gensim
 py-automl
+myst-parser
