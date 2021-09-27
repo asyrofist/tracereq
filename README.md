@@ -5,6 +5,7 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 [![Build Status](https://app.travis-ci.com/asyrofist/Simple-Traceability-SRS-Document.svg?branch=main)](https://app.travis-ci.com/asyrofist/Simple-Traceability-SRS-Document)
 [![Documentation Status](https://readthedocs.org/projects/simple-tracebility/badge/?version=latest)](https://simple-tracebility.readthedocs.io/en/latest/?badge=latest)
+[![Paper](http://img.shields.io/badge/Paper-PDF-red.svg)](https://ieeexplore.ieee.org/document/9263479)
 
 # Simple-Traceability-SRS-Documents
 Author  | [Rakha Asyrofi](https://scholar.google.com/citations?user=WN9T5UUAAAAJ&hl=id&oi=ao)
