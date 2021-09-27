@@ -1,7 +1,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5528405.svg)](https://doi.org/10.5281/zenodo.5528405)
 ![image](https://visitor-badge.laobi.icu/badge?page_id=asyrofist/Simple-Traceability-SRS-Document) 
 ![PyPI - Python Version](https://img.shields.io/badge/python-3.7.0-blue.svg)
-[![PyPI](https://img.shields.io/badge/pypi-v0.0.2-blue.svg)](https://pypi.org/project/tracereq/)
+[![PyPI](https://img.shields.io/pypi/v/tracereq.svg)](https://pypi.org/project/tracereq/)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 [![Build Status](https://app.travis-ci.com/asyrofist/Simple-Traceability-SRS-Document.svg?branch=main)](https://app.travis-ci.com/asyrofist/Simple-Traceability-SRS-Document)
 [![Documentation Status](https://readthedocs.org/projects/simple-tracebility/badge/?version=latest)](https://simple-tracebility.readthedocs.io/en/latest/?badge=latest)
