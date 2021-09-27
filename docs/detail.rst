@@ -1,4 +1,4 @@
-Ekstraksi Kebergantungan berdasarkan kebutuhan evolusioner menggunakan bahasa alamiah
+Comparative Studies of Several Methods for Building Simple Traceability and Identifying The Quality Aspects of Requirements in SRS Documents
 =========================================================================================
 
 Overview
@@ -11,7 +11,7 @@ Semoga data yang saya publikasikan, berguna untuk orang banyak, terima kasih.
 
 Abstrak
 ------------
-Changes in requirements are one of the critical problems that occur during requirement specification. A change in a requirement could trigger changes in other requirements. Thus the identification process requirement to respond and correct the truth, realistic, require, specific, measurable aspects. Previous work has focused on building a model of interdependency between the requirements. This study proposes a method to identify dependencies among requirements. The dependency relations refer to evolutionary requirements. The technique uses natural language processing to extract dependency relations. This research analyzes how to obtain feature extractions by including the following: 1) Gathering requirements statement from the SRS document, 2) Identifying dependencies between requirements, 3) Developing interdependency extraction methods and, 4) Modeling of the interdependency requirement. The expectation of this experiment indicates the interdependency graph model. This graph defines the interdependency in the (Software Requirement Specification) SRS document. This method gathers interdependency between SRS document requirements such as PART OF, AND, OR, & XOR. Therefore, getting the feature extraction to identify the interdependency requirement will be useful for solving specified requirements changing.
+In the software development process, the requirements traceability in the Software Requirements Specification (SRS) is an important aspect to trace fulfillment of requirement. Generally, the implementation of traceability is done manually, and it requires considerable time and money. Many methods have been proposed to identify traceability automatically, therefore, we conducted a comparative study of several existing methods to find out which method is better. In this study, we made a comparison of 4 methods, namely the Information Retrieval (IR), Ontology, Combination of Information Retrieval with Topic Modeling (LSA or LDA) methods. From the comparison of those methods, we found that the IR method gets the highest accuracy score, but the precision, recall and fl-score are unequal between dataset 1 and dataset 2, while other methods (ontology, IR+LSA, IR+LDA) have more stable metrics. The average score of precision from highest to lowest consecutively is in the IR + LDA method, Ontology, then IR+LSA.
 
 .. _EECCIS2021: https://ieeexplore.ieee.org/document/9263479
 .. _courtesy: https://www.researchgate.net/profile/Rakha_Asyrofi
