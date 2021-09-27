@@ -3,6 +3,7 @@
 ![PyPI - Python Version](https://img.shields.io/badge/python-3.7.0-blue.svg)
 [![PyPI](https://img.shields.io/badge/pypi-v0.0.2-blue.svg)](https://pypi.org/project/tracereq/)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
+[![Build Status](https://app.travis-ci.com/asyrofist/Simple-Traceability-SRS-Document.svg?branch=main)](https://app.travis-ci.com/asyrofist/Simple-Traceability-SRS-Document)
 
 # Simple-Traceability-SRS-Documents
 Author  | [Rakha Asyrofi](https://scholar.google.com/citations?user=WN9T5UUAAAAJ&hl=id&oi=ao)
