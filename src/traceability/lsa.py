@@ -1,4 +1,5 @@
 import pandas as pd
+from scipy.sparse import data
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import TruncatedSVD
 from traceability.preprocessing_evaluation import pengukuranEvaluasi
@@ -29,12 +30,18 @@ class latentSemantic:
       th_cosine1 = dt3.where(mask2, other= 1)
       return th_cosine1
 
+  def main(self, threshold, data):
+      dt_lsa = latentSemantic.ukurLSA(self, data)
+      th_lsa = latentSemantic.threshold_value(self, threshold, dt_lsa)
+      myUkur = pengukuranEvaluasi(dt_lsa, th_lsa).ukur_evaluasi()
+      return dt_lsa, th_lsa, myUkur
+
 if __name__ == "__main__":
-    # lsa measurement 
-    myLSA = latentSemantic()
-    dt_lsa = myLSA.ukurLSA()
-    print(tabulate(dt_lsa, headers = 'keys', tablefmt = 'psql'))
-    th_lsa = myLSA.threshold_value(0.2, dt_lsa)
-    print(tabulate(th_lsa, headers = 'keys', tablefmt = 'psql'))
-    myUkur = pengukuranEvaluasi(dt_lsa, th_lsa)
-    hasil_ukur3 = myUkur.ukur_evaluasi()
+  try:
+    a = latentSemantic(data).main(0.2, data)
+    print(tabulate(a[0], headers = 'keys', tablefmt = 'psql'))
+    print(tabulate(a[1], headers = 'keys', tablefmt = 'psql'))
+    print(a[2])
+
+  except OSError as err:
+    print("OS error: {0}".format(err))

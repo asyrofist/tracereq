@@ -5,14 +5,12 @@ from sklearn.decomposition import NMF, LatentDirichletAllocation
 from traceability.preprocessing_evaluation import pengukuranEvaluasi
 from tabulate import tabulate
 
-
 class latentDirichlet:
   def __init__(self, data_raw):
       self.data = data_raw
       self.n_features = len(self.data)
 
   def ukur_tfidf_vectorizer(self):
-      # Use tf-idf features for NMF.
       tfidf_vectorizer = TfidfVectorizer(max_df=0.95, min_df=2,
                                         max_features=self.n_features,
                                         stop_words='english')
@@ -61,25 +59,39 @@ class latentDirichlet:
       th_cosine1 = dt3.where(mask2, other= 1)
       return th_cosine1
 
+  def tabulasi_fr(self, th, data):
+      dt_fr = latentDirichlet.Frobenius_norm_feature(self, data)
+      th_fr = latentDirichlet.threshold_value(self, th, dt_fr)
+      myUkur = pengukuranEvaluasi(dt_fr, th_fr).ukur_evaluasi()
+      return dt_fr, th_fr, myUkur
+      
+  def tabulasi_kl(self, th, data):
+      dt_kl = latentDirichlet.Kullback_feature(self, data)
+      th_kl = latentDirichlet.threshold_value(self, th, dt_kl)
+      myUkur = pengukuranEvaluasi(dt_kl, th_kl).ukur_evaluasi()
+      return dt_kl, th_kl, myUkur
+
+  def tabulasi_lda(self, th, data):
+      dt_lda = latentDirichlet.lda_feature(data)
+      th_lda = latentDirichlet.threshold_value(th, dt_lda)
+      myUkur = pengukuranEvaluasi(dt_lda, th_lda).ukur_evaluasi()
+      return dt_lda, th_lda, myUkur
+
+  def main(self, th, data, output= ['fr', 'kl', 'lda']):
+      if 'fr'in output:
+        latentDirichlet.tabulasi_fr(self, th, data)
+      elif 'kl'in output:
+        latentDirichlet.tabulasi_kl(self, th, data)
+      elif 'lda'in output:
+        latentDirichlet.tabulasi_lda(self, th, data)
+
+
 if __name__ == "__main__":
-      myLDA = latentDirichlet(data)
-      dt_fr = myLDA.Frobenius_norm_feature(data)
-      print(tabulate(dt_fr, headers = 'keys', tablefmt = 'psql'))
-      th_fr = myLDA.threshold_value(0.2, dt_fr)
-      print(tabulate(th_fr, headers = 'keys', tablefmt = 'psql'))
-      myUkur = pengukuranEvaluasi(dt_fr, th_fr)
-      hasil_ukur1 = myUkur.ukur_evaluasi()
+  try:
+    a = latentDirichlet(data).main(0.2, data, 'lda')
+    print(tabulate(a[0], headers = 'keys', tablefmt = 'psql'))
+    print(tabulate(a[1], headers = 'keys', tablefmt = 'psql'))
+    print(a[2])
 
-      dt_kl = myLDA.Kullback_feature(data)
-      print(tabulate(dt_kl, headers = 'keys', tablefmt = 'psql'))
-      th_kl = myLDA.threshold_value(0.2, dt_kl)
-      print(tabulate(th_kl, headers = 'keys', tablefmt = 'psql'))
-      myUkur = pengukuranEvaluasi(dt_kl, th_kl)
-      hasil_ukur2 = myUkur.ukur_evaluasi()
-
-      dt_lda = myLDA.lda_feature(data)
-      print(tabulate(dt_lda, headers = 'keys', tablefmt = 'psql'))
-      th_lda = myLDA.threshold_value(0.2, dt_lda)
-      print(tabulate(th_lda, headers = 'keys', tablefmt = 'psql'))
-      myUkur = pengukuranEvaluasi(dt_lda, th_lda)
-      hasil_ukur3 = myUkur.ukur_evaluasi()
+  except OSError as err:
+    print("OS error: {0}".format(err))

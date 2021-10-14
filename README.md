@@ -8,11 +8,6 @@
 [![Paper](http://img.shields.io/badge/Paper-PDF-red.svg)](https://ieeexplore.ieee.org/document/9263479)
 
 # Simple-Traceability-SRS-Documents
-Author  | [Rakha Asyrofi](https://scholar.google.com/citations?user=WN9T5UUAAAAJ&hl=id&oi=ao)
- -------|-----------
-Version | 0.0.2
-Updated | 2021-09-12
-
 this is repository how to make simple traceability from requirement documents, 
 you can check this out to [live demo](https://wordembed.herokuapp.com/)
 
@@ -22,8 +17,6 @@ Comparative Studies of Several Methods for Building Simple Traceability and Iden
 booktitle={2020 10th Electrical Power, Electronics, Communications, Controls and Informatics Seminar (EECCIS)},   
 title={Comparative Studies of Several Methods for Building Simple Traceability and Identifying The Quality Aspects of Requirements in SRS Documents},   
 year={2020},  
-volume={},  
-number={},  
 pages={243-247},  
 doi={10.1109/EECCIS49483.2020.9263479}}
 ```
@@ -45,7 +38,7 @@ myProses = prosesData(inputData= 'dataset.xlsx')
 myProses.preprocessing()
 ```
 
-Check out: https://youtu.be/9FcAO_wbG_I
+Check out this [youtube link](https://youtu.be/9FcAO_wbG_I): 
 
 
 
