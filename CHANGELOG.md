@@ -3,7 +3,7 @@ Install the latest
 
 To install the latest version simply run:
 
-`pip3 install extractreq`
+`pip3 install tracereq`
 
 
 see the [Installation QuickStart](https://github.com/asyrofist/tracereq) for more instructions.
