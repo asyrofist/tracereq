@@ -1,9 +1,10 @@
 import pandas as pd
 from scipy.sparse import data
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import TruncatedSVD
-from traceability.preprocessing_evaluation import pengukuranEvaluasi
+from sklearn.feature_extraction.text import TfidfVectorizer
 from tabulate import tabulate
+
+from traceability.preprocessing_evaluation import pengukuranEvaluasi
 
 
 class latentSemantic:

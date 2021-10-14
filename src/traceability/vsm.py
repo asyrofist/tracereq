@@ -1,14 +1,13 @@
-import numpy as np
-import pandas as pd
-import math
-from tabulate import tabulate
+import math, numpy as np, pandas as pd
 from scipy.sparse import data
+from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics import pairwise_distances
 from sklearn.metrics.pairwise import pairwise_kernels
-from sklearn.cluster import KMeans
 from sklearn.preprocessing import MinMaxScaler
+from tabulate import tabulate
 from traceability.preprocessing_evaluation import pengukuranEvaluasi
+
 
 class measurement:
   def __init__(self, cleaned_data):

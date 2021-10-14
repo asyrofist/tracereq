@@ -1,9 +1,11 @@
 import pandas as pd
 from scipy.sparse import data
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.decomposition import NMF, LatentDirichletAllocation
-from traceability.preprocessing_evaluation import pengukuranEvaluasi
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from tabulate import tabulate
+
+from traceability.preprocessing_evaluation import pengukuranEvaluasi
+
 
 class latentDirichlet:
   def __init__(self, data_raw):

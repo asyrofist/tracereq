@@ -1,15 +1,16 @@
-import pandas as pd, numpy as np
-from spacy.lang.en import English
-from pyAutoML.ml import ML,ml, EncodeCategorical
+import numpy as np, pandas as pd
+from pyAutoML.ml import ML, EncodeCategorical, ml
 from sklearn.cluster import KMeans
-from sklearn.preprocessing import MinMaxScaler
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
+from spacy.lang.en import English
 from tabulate import tabulate
+
 
 class prosesData:  
   def __init__(self, namaFile):

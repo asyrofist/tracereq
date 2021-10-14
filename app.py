@@ -1,20 +1,15 @@
-import pandas as pd
-import streamlit as st
-import numpy as np
-import string #allows for format()
-from sklearn.feature_extraction.text import CountVectorizer
-from cleaning import apply_cleaning, fulldataset
-from cleaning import l2_normalizer, build_lexicon, freq, numDocsContaining, idf, build_idf_matrix
-from sklearn.metrics import pairwise_distances
-from sklearn.metrics.pairwise import pairwise_kernels
-from sklearn.metrics import classification_report
-from sklearn.decomposition import TruncatedSVD
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.cluster import KMeans
-from nltk import word_tokenize
-from gensim.models.doc2vec import TaggedDocument
-from gensim.models import Doc2Vec
+import string, numpy as np, pandas as pd, streamlit as st
 from multiprocessing import Pool
+from gensim.models import Doc2Vec
+from gensim.models.doc2vec import TaggedDocument
+from nltk import word_tokenize
+from sklearn.cluster import KMeans
+from sklearn.decomposition import TruncatedSVD
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.metrics import classification_report, pairwise_distances
+from sklearn.metrics.pairwise import pairwise_kernels
+from cleaning import (apply_cleaning, build_idf_matrix, build_lexicon, freq,
+                      fulldataset, idf, l2_normalizer, numDocsContaining)
 
 st.write("""
 # Simple Traceability SRS Document
@@ -219,8 +214,9 @@ if index0 is not None:
           
      elif genre == 'IR+LDA':
           st.sidebar.subheader("Parameter LDA")
-          from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
           from sklearn.decomposition import NMF, LatentDirichletAllocation
+          from sklearn.feature_extraction.text import (CountVectorizer,
+                                                       TfidfVectorizer)
           
           feature_value = st.sidebar.slider("Berapa Feature?", 10, 100, 1000)
           maxdf_value = st.sidebar.slider("Berapa df?", 0.0, 1.05, 0.95)
