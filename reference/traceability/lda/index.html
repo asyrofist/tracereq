@@ -1,0 +1,1157 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.0">
+    
+    
+      
+        <title>Lda - tracereq</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.8b42a75e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="lightgreen">
+  
+    
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-traceabilitylda" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="tracereq" class="md-header__button md-logo" aria-label="tracereq" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tracereq
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lda
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/asyrofist/tracereq/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="tracereq" class="md-nav__button md-logo" aria-label="tracereq" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    tracereq
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/asyrofist/tracereq/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CHANGELOG/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../TROUBLESHOOTING/" class="md-nav__link">
+        Troubleshooting
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Contributing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Contributing" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Contributing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/kontribusi/" class="md-nav__link">
+        1. Contributing Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../docs/standard/" class="md-nav__link">
+        2. Coding Standard
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          Traceability
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Traceability" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Traceability
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Lda
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Lda
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latentdirichlet" class="md-nav__link">
+    latentDirichlet
+  </a>
+  
+    <nav class="md-nav" aria-label="latentDirichlet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frobenius_norm_feature" class="md-nav__link">
+    Frobenius_norm_feature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kullback_feature" class="md-nav__link">
+    Kullback_feature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lda_feature" class="md-nav__link">
+    lda_feature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#threshold_value" class="md-nav__link">
+    threshold_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ukur_tf" class="md-nav__link">
+    ukur_tf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ukur_tfidf_vectorizer" class="md-nav__link">
+    ukur_tfidf_vectorizer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lsa/" class="md-nav__link">
+        Lsa
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preprocessing_evaluation/" class="md-nav__link">
+        Preprocessing Evaluation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vsm/" class="md-nav__link">
+        Vsm
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latentdirichlet" class="md-nav__link">
+    latentDirichlet
+  </a>
+  
+    <nav class="md-nav" aria-label="latentDirichlet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frobenius_norm_feature" class="md-nav__link">
+    Frobenius_norm_feature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kullback_feature" class="md-nav__link">
+    Kullback_feature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lda_feature" class="md-nav__link">
+    lda_feature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#threshold_value" class="md-nav__link">
+    threshold_value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ukur_tf" class="md-nav__link">
+    ukur_tf
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ukur_tfidf_vectorizer" class="md-nav__link">
+    ukur_tfidf_vectorizer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/asyrofist/tracereq/edit/main/docs/reference/traceability/lda.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="module-traceabilitylda">Module traceability.lda</h1>
+<p>None</p>
+<p>None</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span><span class="p">,</span> <span class="n">CountVectorizer</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">NMF</span><span class="p">,</span> <span class="n">LatentDirichletAllocation</span>
+
+<span class="kn">from</span> <span class="nn">traceability.preprocessing_evaluation</span> <span class="kn">import</span> <span class="n">pengukuranEvaluasi</span>
+
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="k">class</span> <span class="nc">latentDirichlet</span><span class="p">:</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_raw</span><span class="p">):</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data_raw</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+      <span class="c1"># Use tf-idf features for NMF.</span>
+
+      <span class="n">tfidf_vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">max_df</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">min_df</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+
+                                        <span class="n">max_features</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features</span><span class="p">,</span>
+
+                                        <span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
+
+      <span class="n">tfidf</span> <span class="o">=</span> <span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+      <span class="k">return</span> <span class="n">tfidf_vectorizer</span><span class="p">,</span> <span class="n">tfidf</span>
+
+  <span class="k">def</span> <span class="nf">ukur_tf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+      <span class="n">tf_vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_df</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">min_df</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+
+                                      <span class="n">max_features</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_features</span><span class="p">,</span>
+
+                                      <span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
+
+      <span class="n">tf</span> <span class="o">=</span> <span class="n">tf_vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+      <span class="k">return</span> <span class="n">tf_vectorizer</span><span class="p">,</span> <span class="n">tf</span>
+
+  <span class="k">def</span> <span class="nf">Frobenius_norm_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">):</span>
+
+      <span class="n">nmf</span> <span class="o">=</span> <span class="n">NMF</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span> <span class="n">l1_ratio</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">latentDirichlet</span><span class="o">.</span><span class="n">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="bp">self</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+      <span class="n">nmf_tfidf</span> <span class="o">=</span> <span class="n">latentDirichlet</span><span class="o">.</span><span class="n">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="bp">self</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+
+      <span class="n">fitur_frb_tfidf</span> <span class="o">=</span> <span class="p">(</span><span class="n">nmf_tfidf</span><span class="p">)</span>
+
+      <span class="n">data_frb_tfidf</span> <span class="o">=</span> <span class="p">(</span><span class="n">nmf</span><span class="o">.</span><span class="n">components_</span><span class="p">)</span>
+
+      <span class="n">dt_df</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_frb_tfidf</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span> <span class="n">req</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span> <span class="n">fitur_frb_tfidf</span><span class="p">)</span>
+
+      <span class="k">return</span> <span class="n">dt_df</span>
+
+  <span class="k">def</span> <span class="nf">Kullback_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">):</span>
+
+      <span class="n">nmf</span> <span class="o">=</span> <span class="n">NMF</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">beta_loss</span><span class="o">=</span><span class="s1">&#39;kullback-leibler&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span> <span class="n">l1_ratio</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">latentDirichlet</span><span class="o">.</span><span class="n">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="bp">self</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+      <span class="n">tfidf_feature_names</span> <span class="o">=</span> <span class="n">latentDirichlet</span><span class="o">.</span><span class="n">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="bp">self</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+
+      <span class="n">fitur_kll_tfidfi</span> <span class="o">=</span> <span class="p">(</span><span class="n">tfidf_feature_names</span><span class="p">)</span>
+
+      <span class="n">data_kll_tfidf</span> <span class="o">=</span> <span class="p">(</span><span class="n">nmf</span><span class="o">.</span><span class="n">components_</span><span class="p">)</span>
+
+      <span class="n">dt_df</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_kll_tfidf</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span> <span class="n">req</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span> <span class="n">fitur_kll_tfidfi</span><span class="p">)</span>
+
+      <span class="k">return</span> <span class="n">dt_df</span>
+
+  <span class="k">def</span> <span class="nf">lda_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">):</span>
+
+      <span class="n">lda</span> <span class="o">=</span> <span class="n">LatentDirichletAllocation</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">learning_method</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">,</span> <span class="n">learning_offset</span><span class="o">=</span><span class="mf">50.</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+      <span class="n">lda</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">latentDirichlet</span><span class="o">.</span><span class="n">ukur_tf</span><span class="p">(</span><span class="bp">self</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+      <span class="n">tf_feature_names</span> <span class="o">=</span> <span class="n">latentDirichlet</span><span class="o">.</span><span class="n">ukur_tf</span><span class="p">(</span><span class="bp">self</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+
+      <span class="n">fitur_lda</span> <span class="o">=</span> <span class="p">(</span><span class="n">tf_feature_names</span><span class="p">)</span>
+
+      <span class="n">nmf</span> <span class="o">=</span> <span class="n">NMF</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">beta_loss</span><span class="o">=</span><span class="s1">&#39;kullback-leibler&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span> <span class="n">l1_ratio</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">latentDirichlet</span><span class="o">.</span><span class="n">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="bp">self</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+      <span class="n">data_lda</span> <span class="o">=</span> <span class="p">(</span><span class="n">nmf</span><span class="o">.</span><span class="n">components_</span><span class="p">)</span>
+
+      <span class="n">dt_df</span> <span class="o">=</span>  <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_lda</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span> <span class="n">req</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span> <span class="n">fitur_lda</span><span class="p">)</span>
+
+      <span class="k">return</span> <span class="n">dt_df</span>
+
+  <span class="k">def</span> <span class="nf">threshold_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+
+      <span class="n">dt</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">values</span> <span class="o">&gt;=</span> <span class="n">threshold</span>
+
+      <span class="n">dt1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+      <span class="n">mask</span> <span class="o">=</span> <span class="n">dt1</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="kc">True</span><span class="p">])</span>
+
+      <span class="n">dt3</span> <span class="o">=</span> <span class="n">dt1</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+      <span class="n">mask2</span> <span class="o">=</span> <span class="n">dt3</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="kc">False</span><span class="p">])</span>
+
+      <span class="n">th_cosine1</span> <span class="o">=</span> <span class="n">dt3</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask2</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+      <span class="k">return</span> <span class="n">th_cosine1</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+      <span class="n">myLDA</span> <span class="o">=</span> <span class="n">latentDirichlet</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+      <span class="n">dt_fr</span> <span class="o">=</span> <span class="n">myLDA</span><span class="o">.</span><span class="n">Frobenius_norm_feature</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+      <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">dt_fr</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
+
+      <span class="n">th_fr</span> <span class="o">=</span> <span class="n">myLDA</span><span class="o">.</span><span class="n">threshold_value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dt_fr</span><span class="p">)</span>
+
+      <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">th_fr</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
+
+      <span class="n">myUkur</span> <span class="o">=</span> <span class="n">pengukuranEvaluasi</span><span class="p">(</span><span class="n">dt_fr</span><span class="p">,</span> <span class="n">th_fr</span><span class="p">)</span>
+
+      <span class="n">hasil_ukur1</span> <span class="o">=</span> <span class="n">myUkur</span><span class="o">.</span><span class="n">ukur_evaluasi</span><span class="p">()</span>
+
+      <span class="n">dt_kl</span> <span class="o">=</span> <span class="n">myLDA</span><span class="o">.</span><span class="n">Kullback_feature</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+      <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">dt_kl</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
+
+      <span class="n">th_kl</span> <span class="o">=</span> <span class="n">myLDA</span><span class="o">.</span><span class="n">threshold_value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dt_kl</span><span class="p">)</span>
+
+      <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">th_kl</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
+
+      <span class="n">myUkur</span> <span class="o">=</span> <span class="n">pengukuranEvaluasi</span><span class="p">(</span><span class="n">dt_kl</span><span class="p">,</span> <span class="n">th_kl</span><span class="p">)</span>
+
+      <span class="n">hasil_ukur2</span> <span class="o">=</span> <span class="n">myUkur</span><span class="o">.</span><span class="n">ukur_evaluasi</span><span class="p">()</span>
+
+      <span class="n">dt_lda</span> <span class="o">=</span> <span class="n">myLDA</span><span class="o">.</span><span class="n">lda_feature</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+      <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">dt_lda</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
+
+      <span class="n">th_lda</span> <span class="o">=</span> <span class="n">myLDA</span><span class="o">.</span><span class="n">threshold_value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dt_lda</span><span class="p">)</span>
+
+      <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">th_lda</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
+
+      <span class="n">myUkur</span> <span class="o">=</span> <span class="n">pengukuranEvaluasi</span><span class="p">(</span><span class="n">dt_lda</span><span class="p">,</span> <span class="n">th_lda</span><span class="p">)</span>
+
+      <span class="n">hasil_ukur3</span> <span class="o">=</span> <span class="n">myUkur</span><span class="o">.</span><span class="n">ukur_evaluasi</span><span class="p">()</span>
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="latentdirichlet">latentDirichlet</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">latentDirichlet</span><span class="p">(</span>
+    <span class="n">data_raw</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nl">latentDirichlet</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">data_raw</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">self</span><span class="p">.</span><span class="k">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_raw</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">self</span><span class="p">.</span><span class="n">n_features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="k">data</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="k">Use</span><span class="w"> </span><span class="n">tf</span><span class="o">-</span><span class="n">idf</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">NMF</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">tfidf_vectorizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">max_df</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span><span class="w"> </span><span class="n">min_df</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                                        </span><span class="n">max_features</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">n_features</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                                        </span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">tfidf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tfidf_vectorizer</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="k">data</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">tfidf_vectorizer</span><span class="p">,</span><span class="w"> </span><span class="n">tfidf</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">ukur_tf</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">tf_vectorizer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_df</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span><span class="w"> </span><span class="n">min_df</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                                      </span><span class="n">max_features</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">n_features</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                                      </span><span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">tf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf_vectorizer</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="k">data</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">tf_vectorizer</span><span class="p">,</span><span class="w"> </span><span class="n">tf</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">Frobenius_norm_feature</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">nmf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NMF</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="k">data</span><span class="p">),</span><span class="w"> </span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span><span class="w"> </span><span class="n">l1_ratio</span><span class="o">=</span><span class="mf">.5</span><span class="p">).</span><span class="n">fit</span><span class="p">(</span><span class="n">latentDirichlet</span><span class="p">.</span><span class="n">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">nmf_tfidf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">latentDirichlet</span><span class="p">.</span><span class="n">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">.</span><span class="n">get_feature_names</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">fitur_frb_tfidf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">nmf_tfidf</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">data_frb_tfidf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">nmf</span><span class="p">.</span><span class="n">components_</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">dt_df</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_frb_tfidf</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">columns</span><span class="o">=</span><span class="w"> </span><span class="n">fitur_frb_tfidf</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">dt_df</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">Kullback_feature</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">nmf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NMF</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="k">data</span><span class="p">),</span><span class="w"> </span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">beta_loss</span><span class="o">=</span><span class="s1">&#39;kullback-leibler&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span><span class="w"> </span><span class="n">l1_ratio</span><span class="o">=</span><span class="mf">.5</span><span class="p">).</span><span class="n">fit</span><span class="p">(</span><span class="n">latentDirichlet</span><span class="p">.</span><span class="n">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">tfidf_feature_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">latentDirichlet</span><span class="p">.</span><span class="n">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">.</span><span class="n">get_feature_names</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">fitur_kll_tfidfi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tfidf_feature_names</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">data_kll_tfidf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">nmf</span><span class="p">.</span><span class="n">components_</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">dt_df</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_kll_tfidf</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">columns</span><span class="o">=</span><span class="w"> </span><span class="n">fitur_kll_tfidfi</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">dt_df</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">lda_feature</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">req</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">lda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LatentDirichletAllocation</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="k">data</span><span class="p">),</span><span class="w"> </span><span class="n">max_iter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">learning_method</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">learning_offset</span><span class="o">=</span><span class="mf">50.</span><span class="p">,</span><span class="w"> </span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">lda</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">latentDirichlet</span><span class="p">.</span><span class="n">ukur_tf</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">tf_feature_names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">latentDirichlet</span><span class="p">.</span><span class="n">ukur_tf</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">.</span><span class="n">get_feature_names</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">fitur_lda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">tf_feature_names</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">nmf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NMF</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="k">data</span><span class="p">),</span><span class="w"> </span><span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">beta_loss</span><span class="o">=</span><span class="s1">&#39;kullback-leibler&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="o">=</span><span class="mf">.1</span><span class="p">,</span><span class="w"> </span><span class="n">l1_ratio</span><span class="o">=</span><span class="mf">.5</span><span class="p">).</span><span class="n">fit</span><span class="p">(</span><span class="n">latentDirichlet</span><span class="p">.</span><span class="n">ukur_tfidf_vectorizer</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">data_lda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">nmf</span><span class="p">.</span><span class="n">components_</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">dt_df</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_lda</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="o">=</span><span class="w"> </span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">columns</span><span class="o">=</span><span class="w"> </span><span class="n">fitur_lda</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">dt_df</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">threshold_value</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="k">data</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">data</span><span class="p">.</span><span class="k">values</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">threshold</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">dt1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="o">=</span><span class="w"> </span><span class="k">data</span><span class="p">.</span><span class="k">index</span><span class="p">,</span><span class="w"> </span><span class="n">columns</span><span class="o">=</span><span class="w"> </span><span class="k">data</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt1</span><span class="p">.</span><span class="n">isin</span><span class="p">(</span><span class="o">[</span><span class="n">True</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">dt3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt1</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">mask2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt3</span><span class="p">.</span><span class="n">isin</span><span class="p">(</span><span class="o">[</span><span class="n">False</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">th_cosine1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt3</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="n">mask2</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">th_cosine1</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="methods">Methods</h4>
+<h4 id="frobenius_norm_feature">Frobenius_norm_feature</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">Frobenius_norm_feature</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">req</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>  <span class="nv">def</span> <span class="nv">Frobenius_norm_feature</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">req</span><span class="ss">)</span>:
+
+      <span class="nv">nmf</span> <span class="o">=</span> <span class="nv">NMF</span><span class="ss">(</span><span class="nv">n_components</span><span class="o">=</span><span class="nv">len</span><span class="ss">(</span><span class="nv">self</span>.<span class="nv">data</span><span class="ss">)</span>, <span class="nv">random_state</span><span class="o">=</span><span class="mi">1</span>, <span class="nv">alpha</span><span class="o">=</span>.<span class="mi">1</span>, <span class="nv">l1_ratio</span><span class="o">=</span>.<span class="mi">5</span><span class="ss">)</span>.<span class="nv">fit</span><span class="ss">(</span><span class="nv">latentDirichlet</span>.<span class="nv">ukur_tfidf_vectorizer</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>[<span class="mi">1</span>]<span class="ss">)</span>
+
+      <span class="nv">nmf_tfidf</span> <span class="o">=</span> <span class="nv">latentDirichlet</span>.<span class="nv">ukur_tfidf_vectorizer</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>[<span class="mi">0</span>].<span class="nv">get_feature_names</span><span class="ss">()</span>
+
+      <span class="nv">fitur_frb_tfidf</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">nmf_tfidf</span><span class="ss">)</span>
+
+      <span class="nv">data_frb_tfidf</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">nmf</span>.<span class="nv">components_</span><span class="ss">)</span>
+
+      <span class="nv">dt_df</span> <span class="o">=</span>  <span class="nv">pd</span>.<span class="nv">DataFrame</span><span class="ss">(</span><span class="nv">data_frb_tfidf</span>, <span class="nv">index</span><span class="o">=</span> <span class="nv">req</span>, <span class="nv">columns</span><span class="o">=</span> <span class="nv">fitur_frb_tfidf</span><span class="ss">)</span>
+
+      <span class="k">return</span> <span class="nv">dt_df</span>
+</code></pre></div>
+
+</details>
+<h4 id="kullback_feature">Kullback_feature</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">Kullback_feature</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">req</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>  <span class="nv">def</span> <span class="nv">Kullback_feature</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">req</span><span class="ss">)</span>:
+
+      <span class="nv">nmf</span> <span class="o">=</span> <span class="nv">NMF</span><span class="ss">(</span><span class="nv">n_components</span><span class="o">=</span><span class="nv">len</span><span class="ss">(</span><span class="nv">self</span>.<span class="nv">data</span><span class="ss">)</span>, <span class="nv">random_state</span><span class="o">=</span><span class="mi">1</span>, <span class="nv">beta_loss</span><span class="o">=</span><span class="s1">&#39;</span><span class="s">kullback-leibler</span><span class="s1">&#39;</span>, <span class="nv">solver</span><span class="o">=</span><span class="s1">&#39;</span><span class="s">mu</span><span class="s1">&#39;</span>, <span class="nv">max_iter</span><span class="o">=</span><span class="mi">1000</span>, <span class="nv">alpha</span><span class="o">=</span>.<span class="mi">1</span>, <span class="nv">l1_ratio</span><span class="o">=</span>.<span class="mi">5</span><span class="ss">)</span>.<span class="nv">fit</span><span class="ss">(</span><span class="nv">latentDirichlet</span>.<span class="nv">ukur_tfidf_vectorizer</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>[<span class="mi">1</span>]<span class="ss">)</span>
+
+      <span class="nv">tfidf_feature_names</span> <span class="o">=</span> <span class="nv">latentDirichlet</span>.<span class="nv">ukur_tfidf_vectorizer</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>[<span class="mi">0</span>].<span class="nv">get_feature_names</span><span class="ss">()</span>
+
+      <span class="nv">fitur_kll_tfidfi</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">tfidf_feature_names</span><span class="ss">)</span>
+
+      <span class="nv">data_kll_tfidf</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">nmf</span>.<span class="nv">components_</span><span class="ss">)</span>
+
+      <span class="nv">dt_df</span> <span class="o">=</span>  <span class="nv">pd</span>.<span class="nv">DataFrame</span><span class="ss">(</span><span class="nv">data_kll_tfidf</span>, <span class="nv">index</span><span class="o">=</span> <span class="nv">req</span>, <span class="nv">columns</span><span class="o">=</span> <span class="nv">fitur_kll_tfidfi</span><span class="ss">)</span>
+
+      <span class="k">return</span> <span class="nv">dt_df</span>
+</code></pre></div>
+
+</details>
+<h4 id="lda_feature">lda_feature</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">lda_feature</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">req</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>  <span class="nv">def</span> <span class="nv">lda_feature</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">req</span><span class="ss">)</span>:
+
+      <span class="nv">lda</span> <span class="o">=</span> <span class="nv">LatentDirichletAllocation</span><span class="ss">(</span><span class="nv">n_components</span><span class="o">=</span><span class="nv">len</span><span class="ss">(</span><span class="nv">self</span>.<span class="nv">data</span><span class="ss">)</span>, <span class="nv">max_iter</span><span class="o">=</span><span class="mi">5</span>, <span class="nv">learning_method</span><span class="o">=</span><span class="s1">&#39;</span><span class="s">online</span><span class="s1">&#39;</span>, <span class="nv">learning_offset</span><span class="o">=</span><span class="mi">50</span>., <span class="nv">random_state</span><span class="o">=</span><span class="mi">0</span><span class="ss">)</span>
+
+      <span class="nv">lda</span>.<span class="nv">fit</span><span class="ss">(</span><span class="nv">latentDirichlet</span>.<span class="nv">ukur_tf</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>[<span class="mi">1</span>]<span class="ss">)</span>
+
+      <span class="nv">tf_feature_names</span> <span class="o">=</span> <span class="nv">latentDirichlet</span>.<span class="nv">ukur_tf</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>[<span class="mi">0</span>].<span class="nv">get_feature_names</span><span class="ss">()</span>
+
+      <span class="nv">fitur_lda</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">tf_feature_names</span><span class="ss">)</span>
+
+      <span class="nv">nmf</span> <span class="o">=</span> <span class="nv">NMF</span><span class="ss">(</span><span class="nv">n_components</span><span class="o">=</span><span class="nv">len</span><span class="ss">(</span><span class="nv">self</span>.<span class="nv">data</span><span class="ss">)</span>, <span class="nv">random_state</span><span class="o">=</span><span class="mi">1</span>, <span class="nv">beta_loss</span><span class="o">=</span><span class="s1">&#39;</span><span class="s">kullback-leibler</span><span class="s1">&#39;</span>, <span class="nv">solver</span><span class="o">=</span><span class="s1">&#39;</span><span class="s">mu</span><span class="s1">&#39;</span>, <span class="nv">max_iter</span><span class="o">=</span><span class="mi">1000</span>, <span class="nv">alpha</span><span class="o">=</span>.<span class="mi">1</span>, <span class="nv">l1_ratio</span><span class="o">=</span>.<span class="mi">5</span><span class="ss">)</span>.<span class="nv">fit</span><span class="ss">(</span><span class="nv">latentDirichlet</span>.<span class="nv">ukur_tfidf_vectorizer</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>[<span class="mi">1</span>]<span class="ss">)</span>
+
+      <span class="nv">data_lda</span> <span class="o">=</span> <span class="ss">(</span><span class="nv">nmf</span>.<span class="nv">components_</span><span class="ss">)</span>
+
+      <span class="nv">dt_df</span> <span class="o">=</span>  <span class="nv">pd</span>.<span class="nv">DataFrame</span><span class="ss">(</span><span class="nv">data_lda</span>, <span class="nv">index</span><span class="o">=</span> <span class="nv">req</span>, <span class="nv">columns</span><span class="o">=</span> <span class="nv">fitur_lda</span><span class="ss">)</span>
+
+      <span class="k">return</span> <span class="nv">dt_df</span>
+</code></pre></div>
+
+</details>
+<h4 id="threshold_value">threshold_value</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">threshold_value</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="p">,</span>
+    <span class="n">data</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">threshold_value</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="k">data</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">data</span><span class="p">.</span><span class="k">values</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">threshold</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">dt1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="k">index</span><span class="o">=</span><span class="w"> </span><span class="k">data</span><span class="p">.</span><span class="k">index</span><span class="p">,</span><span class="w"> </span><span class="n">columns</span><span class="o">=</span><span class="w"> </span><span class="k">data</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt1</span><span class="p">.</span><span class="n">isin</span><span class="p">(</span><span class="o">[</span><span class="n">True</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">dt3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt1</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">mask2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt3</span><span class="p">.</span><span class="n">isin</span><span class="p">(</span><span class="o">[</span><span class="n">False</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">th_cosine1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt3</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="n">mask2</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">th_cosine1</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h4 id="ukur_tf">ukur_tf</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">ukur_tf</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>  <span class="nv">def</span> <span class="nv">ukur_tf</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>:
+
+      <span class="nv">tf_vectorizer</span> <span class="o">=</span> <span class="nv">CountVectorizer</span><span class="ss">(</span><span class="nv">max_df</span><span class="o">=</span><span class="mi">0</span>.<span class="mi">95</span>, <span class="nv">min_df</span><span class="o">=</span><span class="mi">2</span>,
+
+                                      <span class="nv">max_features</span><span class="o">=</span><span class="nv">self</span>.<span class="nv">n_features</span>,
+
+                                      <span class="nv">stop_words</span><span class="o">=</span><span class="s1">&#39;</span><span class="s">english</span><span class="s1">&#39;</span><span class="ss">)</span>
+
+      <span class="nv">tf</span> <span class="o">=</span> <span class="nv">tf_vectorizer</span>.<span class="nv">fit_transform</span><span class="ss">(</span><span class="nv">self</span>.<span class="nv">data</span><span class="ss">)</span>
+
+      <span class="k">return</span> <span class="nv">tf_vectorizer</span>, <span class="nv">tf</span>
+</code></pre></div>
+
+</details>
+<h4 id="ukur_tfidf_vectorizer">ukur_tfidf_vectorizer</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">ukur_tfidf_vectorizer</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>  <span class="nv">def</span> <span class="nv">ukur_tfidf_vectorizer</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>:
+
+      # <span class="nv">Use</span> <span class="nv">tf</span><span class="o">-</span><span class="nv">idf</span> <span class="nv">features</span> <span class="k">for</span> <span class="nv">NMF</span>.
+
+      <span class="nv">tfidf_vectorizer</span> <span class="o">=</span> <span class="nv">TfidfVectorizer</span><span class="ss">(</span><span class="nv">max_df</span><span class="o">=</span><span class="mi">0</span>.<span class="mi">95</span>, <span class="nv">min_df</span><span class="o">=</span><span class="mi">2</span>,
+
+                                        <span class="nv">max_features</span><span class="o">=</span><span class="nv">self</span>.<span class="nv">n_features</span>,
+
+                                        <span class="nv">stop_words</span><span class="o">=</span><span class="s1">&#39;</span><span class="s">english</span><span class="s1">&#39;</span><span class="ss">)</span>
+
+      <span class="nv">tfidf</span> <span class="o">=</span> <span class="nv">tfidf_vectorizer</span>.<span class="nv">fit_transform</span><span class="ss">(</span><span class="nv">self</span>.<span class="nv">data</span><span class="ss">)</span>
+
+      <span class="k">return</span> <span class="nv">tfidf_vectorizer</span>, <span class="nv">tfidf</span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../" title="Index" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Index
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../lsa/" title="Lsa" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Lsa
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.f8263e09.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.4fc53ad4.min.js"></script>
+      
+    
+  </body>
+</html>
