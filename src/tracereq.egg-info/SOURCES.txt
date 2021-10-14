@@ -2,11 +2,11 @@ LICENSE
 README.md
 pyproject.toml
 setup.py
-src/traceability/__init__.py
-src/traceability/lda.py
-src/traceability/lsa.py
-src/traceability/preprocessing_evaluation.py
-src/traceability/vsm.py
+src/tracereq/__init__.py
+src/tracereq/lda.py
+src/tracereq/lsa.py
+src/tracereq/preprocessing_evaluation.py
+src/tracereq/vsm.py
 src/tracereq.egg-info/PKG-INFO
 src/tracereq.egg-info/SOURCES.txt
 src/tracereq.egg-info/dependency_links.txt

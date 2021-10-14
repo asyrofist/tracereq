@@ -4,7 +4,7 @@ from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfVectorizer
 from tabulate import tabulate
 
-from traceability.preprocessing_evaluation import pengukuranEvaluasi
+from tracereq.preprocessing_evaluation import pengukuranEvaluasi
 
 
 class latentSemantic:

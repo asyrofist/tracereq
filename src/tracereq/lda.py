@@ -4,7 +4,7 @@ from sklearn.decomposition import NMF, LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from tabulate import tabulate
 
-from traceability.preprocessing_evaluation import pengukuranEvaluasi
+from tracereq.preprocessing_evaluation import pengukuranEvaluasi
 
 
 class latentDirichlet:

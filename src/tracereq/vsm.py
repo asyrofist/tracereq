@@ -6,7 +6,7 @@ from sklearn.metrics import pairwise_distances
 from sklearn.metrics.pairwise import pairwise_kernels
 from sklearn.preprocessing import MinMaxScaler
 from tabulate import tabulate
-from traceability.preprocessing_evaluation import pengukuranEvaluasi
+from tracereq.preprocessing_evaluation import pengukuranEvaluasi
 
 
 class measurement:
