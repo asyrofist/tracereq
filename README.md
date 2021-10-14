@@ -9,6 +9,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/d5a691430635fd5ef2b5/maintainability)](https://codeclimate.com/github/asyrofist/tracereq/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d5a691430635fd5ef2b5/test_coverage)](https://codeclimate.com/github/asyrofist/tracereq/test_coverage)
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://wordembed.herokuapp.com/)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 
 # Simple-Traceability-SRS-Documents
 this is repository how to make simple traceability from requirement documents, 
