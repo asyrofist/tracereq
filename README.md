@@ -6,6 +6,8 @@
 [![Build Status](https://app.travis-ci.com/asyrofist/Simple-Traceability-SRS-Document.svg?branch=main)](https://app.travis-ci.com/asyrofist/Simple-Traceability-SRS-Document)
 [![Documentation Status](https://readthedocs.org/projects/simple-tracebility/badge/?version=latest)](https://simple-tracebility.readthedocs.io/en/latest/?badge=latest)
 [![Paper](http://img.shields.io/badge/Paper-PDF-red.svg)](https://ieeexplore.ieee.org/document/9263479)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d5a691430635fd5ef2b5/maintainability)](https://codeclimate.com/github/asyrofist/tracereq/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d5a691430635fd5ef2b5/test_coverage)](https://codeclimate.com/github/asyrofist/tracereq/test_coverage)
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://wordembed.herokuapp.com/)
 
 # Simple-Traceability-SRS-Documents
