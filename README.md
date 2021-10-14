@@ -6,6 +6,7 @@
 [![Build Status](https://app.travis-ci.com/asyrofist/Simple-Traceability-SRS-Document.svg?branch=main)](https://app.travis-ci.com/asyrofist/Simple-Traceability-SRS-Document)
 [![Documentation Status](https://readthedocs.org/projects/simple-tracebility/badge/?version=latest)](https://simple-tracebility.readthedocs.io/en/latest/?badge=latest)
 [![Paper](http://img.shields.io/badge/Paper-PDF-red.svg)](https://ieeexplore.ieee.org/document/9263479)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://wordembed.herokuapp.com/)
 
 # Simple-Traceability-SRS-Documents
 this is repository how to make simple traceability from requirement documents, 
