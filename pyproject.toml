@@ -6,7 +6,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.portray]
-modules = ['traceability']
+modules = ['tracereq']
 output_dir = "documentation_website"
 
 [tool.portray.mkdocs]
