@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#module-traceabilityvsm" class="md-skip">
+        <a href="#module-tracereqvsm" class="md-skip">
           Skip to content
         </a>
       
@@ -356,14 +356,14 @@
       
       
         <label class="md-nav__link" for="__nav_5_1">
-          Traceability
+          Tracereq
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Traceability" data-md-level="2">
+      <nav class="md-nav" aria-label="Tracereq" data-md-level="2">
         <label class="md-nav__title" for="__nav_5_1">
           <span class="md-nav__icon md-icon"></span>
-          Traceability
+          Tracereq
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -534,6 +534,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#main" class="md-nav__link">
+    main
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#numdocscontaining" class="md-nav__link">
     numDocsContaining
   </a>
@@ -677,6 +684,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#main" class="md-nav__link">
+    main
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#numdocscontaining" class="md-nav__link">
     numDocsContaining
   </a>
@@ -712,23 +726,19 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/asyrofist/tracereq/edit/main/docs/reference/traceability/vsm.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/asyrofist/tracereq/edit/main/docs/reference/tracereq/vsm.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="module-traceabilityvsm">Module traceability.vsm</h1>
+                <h1 id="module-tracereqvsm">Module tracereq.vsm</h1>
 <p>None</p>
 <p>None</p>
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="kn">import</span> <span class="nn">math</span>
-
-<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="o">,</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
 
@@ -736,11 +746,11 @@
 
 <span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">pairwise_kernels</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
-
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
 
-<span class="kn">from</span> <span class="nn">traceability.preprocessing_evaluation</span> <span class="kn">import</span> <span class="n">pengukuranEvaluasi</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="kn">from</span> <span class="nn">tracereq.preprocessing_evaluation</span> <span class="kn">import</span> <span class="n">pengukuranEvaluasi</span>
 
 <span class="k">class</span> <span class="nc">measurement</span><span class="p">:</span>
 
@@ -764,9 +774,9 @@
 
   <span class="k">def</span> <span class="nf">l2_normalizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vec</span><span class="p">):</span>
 
-      <span class="n">denom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">sum</span><span class="p">([</span><span class="n">el</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">vec</span><span class="p">])</span>
+      <span class="n">denom</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">el</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">vec</span><span class="p">])</span>
 
-      <span class="k">return</span> <span class="p">[(</span><span class="n">el</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="kp">sqrt</span><span class="p">(</span><span class="n">denom</span><span class="p">))</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">vec</span><span class="p">]</span>
+      <span class="k">return</span> <span class="p">[(</span><span class="n">el</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">denom</span><span class="p">))</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="n">vec</span><span class="p">]</span>
 
   <span class="k">def</span> <span class="nf">build_lexicon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">corpus</span><span class="p">):</span>
 
@@ -774,13 +784,13 @@
 
       <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">corpus</span><span class="p">:</span>
 
-          <span class="n">lexicon</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="kp">split</span><span class="p">()])</span>
+          <span class="n">lexicon</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
 
       <span class="k">return</span> <span class="n">lexicon</span>
 
   <span class="k">def</span> <span class="nf">freq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">term</span><span class="p">,</span> <span class="n">document</span><span class="p">):</span>
 
-    <span class="k">return</span> <span class="n">document</span><span class="o">.</span><span class="kp">split</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">document</span><span class="o">.</span><span class="n">split</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
 
   <span class="k">def</span> <span class="nf">numDocsContaining</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">doclist</span><span class="p">):</span>
 
@@ -800,11 +810,11 @@
 
       <span class="n">df</span> <span class="o">=</span> <span class="n">measurement</span><span class="o">.</span><span class="n">numDocsContaining</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">doclist</span><span class="p">)</span>
 
-      <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="kp">log</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">/</span> <span class="mi">1</span><span class="o">+</span><span class="n">df</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">/</span> <span class="mi">1</span><span class="o">+</span><span class="n">df</span><span class="p">)</span>
 
   <span class="k">def</span> <span class="nf">build_idf_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idf_vector</span><span class="p">):</span>
 
-      <span class="n">idf_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">idf_vector</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">idf_vector</span><span class="p">)))</span>
+      <span class="n">idf_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">idf_vector</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">idf_vector</span><span class="p">)))</span>
 
       <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">idf_mat</span><span class="p">,</span> <span class="n">idf_vector</span><span class="p">)</span>
 
@@ -812,9 +822,9 @@
 
   <span class="k">def</span> <span class="nf">cosine_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">req</span><span class="p">):</span>
 
-      <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>
+      <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:])</span>
 
-      <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+      <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
       <span class="n">cosine_similaritas</span> <span class="o">=</span> <span class="n">pairwise_kernels</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>
 
@@ -830,57 +840,69 @@
 
       <span class="n">mask</span> <span class="o">=</span> <span class="n">dt1</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="kc">True</span><span class="p">])</span>
 
-      <span class="n">dt3</span> <span class="o">=</span> <span class="n">dt1</span><span class="o">.</span><span class="kp">where</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">dt3</span> <span class="o">=</span> <span class="n">dt1</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
 
       <span class="n">mask2</span> <span class="o">=</span> <span class="n">dt3</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="kc">False</span><span class="p">])</span>
 
-      <span class="n">th_cosine1</span> <span class="o">=</span> <span class="n">dt3</span><span class="o">.</span><span class="kp">where</span><span class="p">(</span><span class="n">mask2</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">th_cosine1</span> <span class="o">=</span> <span class="n">dt3</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask2</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 
       <span class="k">return</span> <span class="n">th_cosine1</span>
 
+  <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="s1">&#39;l2_normalizer&#39;</span><span class="p">]):</span>
+
+    <span class="n">bow</span> <span class="o">=</span> <span class="n">measurement</span><span class="o">.</span><span class="n">bagOfWords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="n">vocabulary</span> <span class="o">=</span> <span class="n">measurement</span><span class="o">.</span><span class="n">build_lexicon</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="n">my_idf_vector</span> <span class="o">=</span> <span class="p">[</span><span class="n">measurement</span><span class="o">.</span><span class="n">idf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">vocabulary</span><span class="p">]</span> <span class="c1"># vektor idf</span>
+
+    <span class="n">my_idf_matrix</span> <span class="o">=</span> <span class="n">measurement</span><span class="o">.</span><span class="n">build_idf_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">my_idf_vector</span><span class="p">)</span> <span class="c1"># membuat matriks idf</span>
+
+    <span class="n">doc_term_matrix_tfidf</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">tf_vector</span><span class="p">,</span> <span class="n">my_idf_matrix</span><span class="p">)</span> <span class="k">for</span> <span class="n">tf_vector</span> <span class="ow">in</span> <span class="n">bow</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+
+    <span class="n">dt_cosine</span> <span class="o">=</span> <span class="n">measurement</span><span class="o">.</span><span class="n">cosine_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc_term_matrix_tfidf</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="n">th_cosine</span> <span class="o">=</span> <span class="n">measurement</span><span class="o">.</span><span class="n">threshold_value</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">dt_cosine</span><span class="p">)</span><span class="c1"># tfidf normal</span>
+
+    <span class="n">myUkur</span> <span class="o">=</span> <span class="n">pengukuranEvaluasi</span><span class="p">(</span><span class="n">dt_cosine</span><span class="p">,</span> <span class="n">th_cosine</span><span class="p">)</span><span class="o">.</span><span class="n">ukur_evaluasi</span><span class="p">()</span>
+
+    <span class="n">doc_term_matrix_l2</span> <span class="o">=</span> <span class="p">[</span><span class="n">measurement</span><span class="o">.</span><span class="n">l2_normalizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vec</span><span class="p">)</span> <span class="k">for</span> <span class="n">vec</span> <span class="ow">in</span> <span class="n">bow</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+
+    <span class="n">doc_term_matrix_tfidf_l2</span> <span class="o">=</span> <span class="p">[</span><span class="n">measurement</span><span class="o">.</span><span class="n">l2_normalizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tf_vector</span><span class="p">)</span> <span class="k">for</span> <span class="n">tf_vector</span> <span class="ow">in</span> <span class="n">doc_term_matrix_tfidf</span><span class="p">]</span>
+
+    <span class="n">dt_cosine_l2</span> <span class="o">=</span> <span class="n">measurement</span><span class="o">.</span><span class="n">cosine_measurement</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc_term_matrix_tfidf_l2</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="n">th_cosine_l2</span> <span class="o">=</span> <span class="n">measurement</span><span class="o">.</span><span class="n">threshold_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">dt_cosine_l2</span><span class="p">)</span><span class="c1"># tfidf dengan l2 normalizer</span>
+
+    <span class="n">myUkur</span> <span class="o">=</span> <span class="n">pengukuranEvaluasi</span><span class="p">(</span><span class="n">dt_cosine_l2</span><span class="p">,</span> <span class="n">th_cosine_l2</span><span class="p">)</span><span class="o">.</span><span class="n">ukur_evaluasi</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="s1">&#39;normal&#39;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">my_idf_vector</span><span class="p">,</span> <span class="n">my_idf_matrix</span><span class="p">,</span> <span class="n">doc_term_matrix_tfidf</span><span class="p">,</span> <span class="n">dt_cosine</span><span class="p">,</span> <span class="n">th_cosine</span><span class="p">,</span> <span class="n">myUkur</span>
+
+    <span class="k">if</span> <span class="s1">&#39;l2_normalizer&#39;</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">doc_term_matrix_l2</span><span class="p">,</span> <span class="n">doc_term_matrix_tfidf_l2</span><span class="p">,</span> <span class="n">dt_cosine_l2</span><span class="p">,</span> <span class="n">th_cosine_l2</span><span class="p">,</span> <span class="n">myUkur</span>
+
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
-      <span class="n">myVSMMeasurement</span> <span class="o">=</span> <span class="n">measurement</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="k">try</span><span class="p">:</span>
 
-      <span class="n">mydoclist</span> <span class="o">=</span> <span class="n">data</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">measurement</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="s1">&#39;l2_normalizer&#39;</span><span class="p">)</span>
 
-      <span class="n">bow</span> <span class="o">=</span> <span class="n">myVSMMeasurement</span><span class="o">.</span><span class="n">bagOfWords</span><span class="p">(</span><span class="n">mydoclist</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
 
-      <span class="n">vocabulary</span> <span class="o">=</span> <span class="n">myVSMMeasurement</span><span class="o">.</span><span class="n">build_lexicon</span><span class="p">(</span><span class="n">mydoclist</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
 
-      <span class="c1"># tfidf normal</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
 
-      <span class="n">my_idf_vector</span> <span class="o">=</span> <span class="p">[</span><span class="n">myVSMMeasurement</span><span class="o">.</span><span class="n">idf</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">mydoclist</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">vocabulary</span><span class="p">]</span> <span class="c1"># vektor idf</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
 
-      <span class="n">my_idf_matrix</span> <span class="o">=</span> <span class="n">myVSMMeasurement</span><span class="o">.</span><span class="n">build_idf_matrix</span><span class="p">(</span><span class="n">my_idf_vector</span><span class="p">)</span> <span class="c1"># membuat matriks idf</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
 
-      <span class="n">doc_term_matrix_tfidf</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="kp">dot</span><span class="p">(</span><span class="n">tf_vector</span><span class="p">,</span> <span class="n">my_idf_matrix</span><span class="p">)</span> <span class="k">for</span> <span class="n">tf_vector</span> <span class="ow">in</span> <span class="n">bow</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+  <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 
-      <span class="n">dt_cosine</span> <span class="o">=</span> <span class="n">myVSMMeasurement</span><span class="o">.</span><span class="n">cosine_measurement</span><span class="p">(</span><span class="n">doc_term_matrix_tfidf</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-
-      <span class="n">th_cosine</span> <span class="o">=</span> <span class="n">myVSMMeasurement</span><span class="o">.</span><span class="n">threshold_value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dt_cosine</span><span class="p">)</span>
-
-      <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">dt_cosine</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
-
-      <span class="n">myUkur</span> <span class="o">=</span> <span class="n">pengukuranEvaluasi</span><span class="p">(</span><span class="n">dt_cosine</span><span class="p">,</span> <span class="n">th_cosine</span><span class="p">)</span>
-
-      <span class="n">hasil_ukur1</span> <span class="o">=</span> <span class="n">myUkur</span><span class="o">.</span><span class="n">ukur_evaluasi</span><span class="p">()</span>
-
-      <span class="c1"># tfidf dengan l2 normalizer</span>
-
-      <span class="n">doc_term_matrix_l2</span> <span class="o">=</span> <span class="p">[</span><span class="n">myVSMMeasurement</span><span class="o">.</span><span class="n">l2_normalizer</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="k">for</span> <span class="n">vec</span> <span class="ow">in</span> <span class="n">bow</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
-
-      <span class="n">doc_term_matrix_tfidf_l2</span> <span class="o">=</span> <span class="p">[</span><span class="n">myVSMMeasurement</span><span class="o">.</span><span class="n">l2_normalizer</span><span class="p">(</span><span class="n">tf_vector</span><span class="p">)</span> <span class="k">for</span> <span class="n">tf_vector</span> <span class="ow">in</span> <span class="n">doc_term_matrix_tfidf</span><span class="p">]</span>
-
-      <span class="n">dt_cosine_l2</span> <span class="o">=</span> <span class="n">myVSMMeasurement</span><span class="o">.</span><span class="n">cosine_measurement</span><span class="p">(</span><span class="n">doc_term_matrix_tfidf_l2</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-
-      <span class="n">th_cosine_l2</span> <span class="o">=</span> <span class="n">myVSMMeasurement</span><span class="o">.</span><span class="n">threshold_value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">dt_cosine_l2</span><span class="p">)</span>
-
-      <span class="nb">print</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">dt_cosine</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span> <span class="o">=</span> <span class="s1">&#39;psql&#39;</span><span class="p">))</span>
-
-      <span class="n">myUkur</span> <span class="o">=</span> <span class="n">pengukuranEvaluasi</span><span class="p">(</span><span class="n">dt_cosine_l2</span><span class="p">,</span> <span class="n">th_cosine_l2</span><span class="p">)</span>
-
-      <span class="n">hasil_ukur2</span> <span class="o">=</span> <span class="n">myUkur</span><span class="o">.</span><span class="n">ukur_evaluasi</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OS error: </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
 </code></pre></div>
 
 </details>
@@ -986,6 +1008,42 @@
 <span class="w">      </span><span class="n">th_cosine1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dt3</span><span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="n">mask2</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">th_cosine1</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="k">output</span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">&#39;normal&#39;, &#39;l2_normalizer&#39;</span><span class="o">]</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">bow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">measurement</span><span class="p">.</span><span class="n">bagOfWords</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="k">data</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">vocabulary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">measurement</span><span class="p">.</span><span class="n">build_lexicon</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="k">data</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">my_idf_vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">measurement.idf(self, word, data) for word in vocabulary</span><span class="o">]</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">vektor</span><span class="w"> </span><span class="n">idf</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">my_idf_matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">measurement</span><span class="p">.</span><span class="n">build_idf_matrix</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">my_idf_vector</span><span class="p">)</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">membuat</span><span class="w"> </span><span class="n">matriks</span><span class="w"> </span><span class="n">idf</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">doc_term_matrix_tfidf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">np.dot(tf_vector, my_idf_matrix) for tf_vector in bow.values</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">dt_cosine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">measurement</span><span class="p">.</span><span class="n">cosine_measurement</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">doc_term_matrix_tfidf</span><span class="p">.</span><span class="k">values</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">th_cosine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">measurement</span><span class="p">.</span><span class="n">threshold_value</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="n">dt_cosine</span><span class="p">)</span><span class="err">#</span><span class="w"> </span><span class="n">tfidf</span><span class="w"> </span><span class="n">normal</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">myUkur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pengukuranEvaluasi</span><span class="p">(</span><span class="n">dt_cosine</span><span class="p">,</span><span class="w"> </span><span class="n">th_cosine</span><span class="p">).</span><span class="n">ukur_evaluasi</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">doc_term_matrix_l2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">measurement.l2_normalizer(self, vec) for vec in bow.values</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">doc_term_matrix_tfidf_l2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">measurement.l2_normalizer(self, tf_vector) for tf_vector in doc_term_matrix_tfidf</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">dt_cosine_l2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">measurement</span><span class="p">.</span><span class="n">cosine_measurement</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">doc_term_matrix_tfidf_l2</span><span class="p">.</span><span class="k">values</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">th_cosine_l2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">measurement</span><span class="p">.</span><span class="n">threshold_value</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="n">dt_cosine_l2</span><span class="p">)</span><span class="err">#</span><span class="w"> </span><span class="n">tfidf</span><span class="w"> </span><span class="n">dengan</span><span class="w"> </span><span class="n">l2</span><span class="w"> </span><span class="n">normalizer</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">myUkur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pengukuranEvaluasi</span><span class="p">(</span><span class="n">dt_cosine_l2</span><span class="p">,</span><span class="w"> </span><span class="n">th_cosine_l2</span><span class="p">).</span><span class="n">ukur_evaluasi</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="s1">&#39;normal&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">output</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">my_idf_vector</span><span class="p">,</span><span class="w"> </span><span class="n">my_idf_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">doc_term_matrix_tfidf</span><span class="p">,</span><span class="w"> </span><span class="n">dt_cosine</span><span class="p">,</span><span class="w"> </span><span class="n">th_cosine</span><span class="p">,</span><span class="w"> </span><span class="n">myUkur</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="s1">&#39;l2_normalizer&#39;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">output</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">doc_term_matrix_l2</span><span class="p">,</span><span class="w"> </span><span class="n">doc_term_matrix_tfidf_l2</span><span class="p">,</span><span class="w"> </span><span class="n">dt_cosine_l2</span><span class="p">,</span><span class="w"> </span><span class="n">th_cosine_l2</span><span class="p">,</span><span class="w"> </span><span class="n">myUkur</span><span class="w"></span>
 </code></pre></div>
 
 </details>
@@ -1117,6 +1175,53 @@
       <span class="nv">denom</span> <span class="o">=</span> <span class="nv">np</span>.<span class="nv">sum</span><span class="ss">(</span>[<span class="nv">el</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="nv">el</span> <span class="nv">in</span> <span class="nv">vec</span>]<span class="ss">)</span>
 
       <span class="k">return</span> [<span class="ss">(</span><span class="nv">el</span> <span class="o">/</span> <span class="nv">math</span>.<span class="nv">sqrt</span><span class="ss">(</span><span class="nv">denom</span><span class="ss">))</span> <span class="k">for</span> <span class="nv">el</span> <span class="nv">in</span> <span class="nv">vec</span>]
+</code></pre></div>
+
+</details>
+<h4 id="main">main</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">output</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="s1">&#39;l2_normalizer&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>  <span class="nv">def</span> <span class="nv">main</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">threshold</span>, <span class="nv">data</span>, <span class="nv">output</span><span class="o">=</span> [<span class="s1">&#39;</span><span class="s">normal</span><span class="s1">&#39;</span>, <span class="s1">&#39;</span><span class="s">l2_normalizer</span><span class="s1">&#39;</span>]<span class="ss">)</span>:
+
+    <span class="nv">bow</span> <span class="o">=</span> <span class="nv">measurement</span>.<span class="nv">bagOfWords</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">data</span><span class="ss">)</span>
+
+    <span class="nv">vocabulary</span> <span class="o">=</span> <span class="nv">measurement</span>.<span class="nv">build_lexicon</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">data</span><span class="ss">)</span>
+
+    <span class="nv">my_idf_vector</span> <span class="o">=</span> [<span class="nv">measurement</span>.<span class="nv">idf</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">word</span>, <span class="nv">data</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">word</span> <span class="nv">in</span> <span class="nv">vocabulary</span>] # <span class="nv">vektor</span> <span class="nv">idf</span>
+
+    <span class="nv">my_idf_matrix</span> <span class="o">=</span> <span class="nv">measurement</span>.<span class="nv">build_idf_matrix</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">my_idf_vector</span><span class="ss">)</span> # <span class="nv">membuat</span> <span class="nv">matriks</span> <span class="nv">idf</span>
+
+    <span class="nv">doc_term_matrix_tfidf</span> <span class="o">=</span> [<span class="nv">np</span>.<span class="nv">dot</span><span class="ss">(</span><span class="nv">tf_vector</span>, <span class="nv">my_idf_matrix</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">tf_vector</span> <span class="nv">in</span> <span class="nv">bow</span>.<span class="nv">values</span>]
+
+    <span class="nv">dt_cosine</span> <span class="o">=</span> <span class="nv">measurement</span>.<span class="nv">cosine_measurement</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">doc_term_matrix_tfidf</span>.<span class="nv">values</span><span class="ss">)</span>
+
+    <span class="nv">th_cosine</span> <span class="o">=</span> <span class="nv">measurement</span>.<span class="nv">threshold_value</span><span class="ss">(</span><span class="nv">threshold</span>, <span class="nv">dt_cosine</span><span class="ss">)</span># <span class="nv">tfidf</span> <span class="nv">normal</span>
+
+    <span class="nv">myUkur</span> <span class="o">=</span> <span class="nv">pengukuranEvaluasi</span><span class="ss">(</span><span class="nv">dt_cosine</span>, <span class="nv">th_cosine</span><span class="ss">)</span>.<span class="nv">ukur_evaluasi</span><span class="ss">()</span>
+
+    <span class="nv">doc_term_matrix_l2</span> <span class="o">=</span> [<span class="nv">measurement</span>.<span class="nv">l2_normalizer</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">vec</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">vec</span> <span class="nv">in</span> <span class="nv">bow</span>.<span class="nv">values</span>]
+
+    <span class="nv">doc_term_matrix_tfidf_l2</span> <span class="o">=</span> [<span class="nv">measurement</span>.<span class="nv">l2_normalizer</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">tf_vector</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">tf_vector</span> <span class="nv">in</span> <span class="nv">doc_term_matrix_tfidf</span>]
+
+    <span class="nv">dt_cosine_l2</span> <span class="o">=</span> <span class="nv">measurement</span>.<span class="nv">cosine_measurement</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">doc_term_matrix_tfidf_l2</span>.<span class="nv">values</span><span class="ss">)</span>
+
+    <span class="nv">th_cosine_l2</span> <span class="o">=</span> <span class="nv">measurement</span>.<span class="nv">threshold_value</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">threshold</span>, <span class="nv">dt_cosine_l2</span><span class="ss">)</span># <span class="nv">tfidf</span> <span class="nv">dengan</span> <span class="nv">l2</span> <span class="nv">normalizer</span>
+
+    <span class="nv">myUkur</span> <span class="o">=</span> <span class="nv">pengukuranEvaluasi</span><span class="ss">(</span><span class="nv">dt_cosine_l2</span>, <span class="nv">th_cosine_l2</span><span class="ss">)</span>.<span class="nv">ukur_evaluasi</span><span class="ss">()</span>
+
+    <span class="k">if</span> <span class="s1">&#39;</span><span class="s">normal</span><span class="s1">&#39;</span> <span class="nv">in</span> <span class="nv">output</span>:
+
+        <span class="k">return</span> <span class="nv">my_idf_vector</span>, <span class="nv">my_idf_matrix</span>, <span class="nv">doc_term_matrix_tfidf</span>, <span class="nv">dt_cosine</span>, <span class="nv">th_cosine</span>, <span class="nv">myUkur</span>
+
+    <span class="k">if</span> <span class="s1">&#39;</span><span class="s">l2_normalizer</span><span class="s1">&#39;</span> <span class="nv">in</span> <span class="nv">output</span>:
+
+        <span class="k">return</span> <span class="nv">doc_term_matrix_l2</span>, <span class="nv">doc_term_matrix_tfidf_l2</span>, <span class="nv">dt_cosine_l2</span>, <span class="nv">th_cosine_l2</span>, <span class="nv">myUkur</span>
 </code></pre></div>
 
 </details>

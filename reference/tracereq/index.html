@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#module-traceability" class="md-skip">
+        <a href="#module-tracereq" class="md-skip">
           Skip to content
         </a>
       
@@ -356,14 +356,14 @@
       
       
         <label class="md-nav__link" for="__nav_5_1">
-          Traceability
+          Tracereq
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Traceability" data-md-level="2">
+      <nav class="md-nav" aria-label="Tracereq" data-md-level="2">
         <label class="md-nav__title" for="__nav_5_1">
           <span class="md-nav__icon md-icon"></span>
-          Traceability
+          Tracereq
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -534,30 +534,32 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/asyrofist/tracereq/edit/main/docs/reference/traceability/index.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/asyrofist/tracereq/edit/main/docs/reference/tracereq/index.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="module-traceability">Module traceability</h1>
+                <h1 id="module-tracereq">Module tracereq</h1>
 <p>None</p>
 <p>None</p>
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">traceability.preprocessing_evaluation</span> <span class="kn">import</span> <span class="n">prosesData</span><span class="p">,</span> <span class="n">pengukuranEvaluasi</span>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">tracereq.lda</span> <span class="kn">import</span> <span class="n">latentDirichlet</span>
 
-<span class="kn">from</span> <span class="nn">traceability.lsa</span> <span class="kn">import</span> <span class="n">latentSemantic</span>
+<span class="kn">from</span> <span class="nn">tracereq.lsa</span> <span class="kn">import</span> <span class="n">latentSemantic</span>
 
-<span class="kn">from</span> <span class="nn">traceability.lda</span> <span class="kn">import</span> <span class="n">latentDirichlet</span>
+<span class="kn">from</span> <span class="nn">tracereq.preprocessing_evaluation</span> <span class="kn">import</span> <span class="p">(</span><span class="n">pengukuranEvaluasi</span><span class="p">,</span>
 
-<span class="kn">from</span> <span class="nn">traceability.vsm</span> <span class="kn">import</span> <span class="n">measurement</span>
+                                                   <span class="n">prosesData</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">tracereq.vsm</span> <span class="kn">import</span> <span class="n">measurement</span>
 </code></pre></div>
 
 </details>
 <h2 id="sub-modules">Sub-modules</h2>
 <ul>
-<li><a href="lda/">traceability.lda</a></li>
-<li><a href="lsa/">traceability.lsa</a></li>
-<li><a href="preprocessing_evaluation/">traceability.preprocessing_evaluation</a></li>
-<li><a href="vsm/">traceability.vsm</a></li>
+<li><a href="lda/">tracereq.lda</a></li>
+<li><a href="lsa/">tracereq.lsa</a></li>
+<li><a href="preprocessing_evaluation/">tracereq.preprocessing_evaluation</a></li>
+<li><a href="vsm/">tracereq.vsm</a></li>
 </ul>
                 
               

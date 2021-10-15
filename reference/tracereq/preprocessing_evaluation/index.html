@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#module-traceabilitypreprocessing_evaluation" class="md-skip">
+        <a href="#module-tracereqpreprocessing_evaluation" class="md-skip">
           Skip to content
         </a>
       
@@ -356,14 +356,14 @@
       
       
         <label class="md-nav__link" for="__nav_5_1">
-          Traceability
+          Tracereq
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" aria-label="Traceability" data-md-level="2">
+      <nav class="md-nav" aria-label="Tracereq" data-md-level="2">
         <label class="md-nav__title" for="__nav_5_1">
           <span class="md-nav__icon md-icon"></span>
-          Traceability
+          Tracereq
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -710,61 +710,79 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/asyrofist/tracereq/edit/main/docs/reference/traceability/preprocessing_evaluation.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/asyrofist/tracereq/edit/main/docs/reference/tracereq/preprocessing_evaluation.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="module-traceabilitypreprocessing_evaluation">Module traceability.preprocessing_evaluation</h1>
+                <h1 id="module-tracereqpreprocessing_evaluation">Module tracereq.preprocessing_evaluation</h1>
 <p>None</p>
 <p>None</p>
-<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span><span class="o">,</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pyAutoML.ml</span> <span class="kn">import</span> <span class="n">ML</span><span class="p">,</span> <span class="n">EncodeCategorical</span><span class="p">,</span> <span class="n">ml</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
 
 <span class="kn">from</span> <span class="nn">spacy.lang.en</span> <span class="kn">import</span> <span class="n">English</span>
 
 <span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
-
-<span class="kn">from</span> <span class="nn">pyAutoML.ml</span> <span class="kn">import</span> <span class="n">ML</span><span class="p">,</span><span class="n">ml</span><span class="p">,</span> <span class="n">EncodeCategorical</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-
 <span class="k">class</span> <span class="nc">prosesData</span><span class="p">:</span>
 
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">namaFile</span><span class="p">):</span>
+
+      <span class="sd">&#39;&#39;&#39;fungi ini digunakan untuk menginisialisasi data</span>
+
+<span class="sd">      sehingga perlu dilakukan proses construct data.</span>
+
+<span class="sd">      &#39;&#39;&#39;</span>
 
       <span class="bp">self</span><span class="o">.</span><span class="n">dataFile</span> <span class="o">=</span> <span class="n">namaFile</span>
 
   <span class="k">def</span> <span class="nf">fulldataset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputSRS</span><span class="o">=</span> <span class="s1">&#39;SRS1&#39;</span><span class="p">):</span>
 
+      <span class="sd">&#39;&#39;&#39;fungi ini digunakan untuk menampilkan data secara spesifik,</span>
+
+<span class="sd">      sehingga menunjukkan data yang diinginkan.</span>
+
+<span class="sd">      syntax yang digunakan adalah sebagai berikut:</span>
+
+<span class="sd">      prosesData(data).fulldataset(inputSRS)</span>
+
+<span class="sd">      &#39;&#39;&#39;</span>
+
       <span class="n">xl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataFile</span><span class="p">)</span>
 
-      <span class="n">dfs</span> <span class="o">=</span> <span class="p">{</span><span class="n">sh</span><span class="p">:</span><span class="n">xl</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">sh</span><span class="p">)</span> <span class="k">for</span> <span class="n">sh</span> <span class="ow">in</span> <span class="n">xl</span><span class="o">.</span><span class="n">sheet_names</span><span class="p">}</span>
+      <span class="n">dfs</span> <span class="o">=</span> <span class="p">{</span><span class="n">sh</span><span class="p">:</span><span class="n">xl</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">sh</span><span class="p">)</span> <span class="k">for</span> <span class="n">sh</span> <span class="ow">in</span> <span class="n">xl</span><span class="o">.</span><span class="n">sheet_names</span><span class="p">}[</span><span class="n">inputSRS</span><span class="p">]</span>
 
-      <span class="n">kalimat</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">[</span><span class="n">inputSRS</span><span class="p">]</span>
-
-      <span class="n">kalimat_semua</span> <span class="o">=</span> <span class="n">kalimat</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kalimat</span><span class="p">))</span>
-
-      <span class="k">return</span> <span class="n">kalimat_semua</span>
+      <span class="k">return</span> <span class="n">dfs</span>
 
   <span class="k">def</span> <span class="nf">preprocessing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+      <span class="sd">&#39;&#39;&#39;fungsi ini digunakan untuk mengecek data yang digunakan</span>
+
+<span class="sd">      untuk melihat data yang digunakan. sehingga syntax yang digunakan</span>
+
+<span class="sd">      yaitu adalah sebagai berikut:</span>
+
+<span class="sd">      prosesData(data).preprocessing()</span>
+
+<span class="sd">      &#39;&#39;&#39;</span>
 
       <span class="n">xl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataFile</span><span class="p">)</span>
 
@@ -778,15 +796,27 @@
 
   <span class="k">def</span> <span class="nf">apply_cleaning_function_to_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
 
-      <span class="n">cleaned_X</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="sd">&#39;&#39;&#39;fungsi ini digunakan untuk mengaplikasikan fungsi pembersihan data,</span>
 
-      <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
+<span class="sd">      sesuai dengan list yang dipilih. Sehingga maasuk ke tahapan selanjutnya.</span>
 
-          <span class="n">cleaned_X</span><span class="o">.</span><span class="kp">append</span><span class="p">(</span><span class="n">prosesData</span><span class="o">.</span><span class="n">clean_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_text</span><span class="o">=</span> <span class="n">element</span><span class="p">))</span>
+<span class="sd">      prosesData(data).apply_cleaning_function_to_list(X)</span>
+
+<span class="sd">      &#39;&#39;&#39;</span>
+
+      <span class="n">cleaned_X</span> <span class="o">=</span> <span class="p">[</span><span class="n">prosesData</span><span class="o">.</span><span class="n">clean_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_text</span><span class="o">=</span> <span class="n">element</span><span class="p">)</span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">X</span><span class="p">]</span>
 
       <span class="k">return</span> <span class="n">cleaned_X</span>
 
   <span class="k">def</span> <span class="nf">clean_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_text</span><span class="p">):</span>
+
+      <span class="sd">&#39;&#39;&#39;fungsi ini digunakan untuk mengaplikasikan fungsi pembersihan data,</span>
+
+<span class="sd">      sesuai dengan list yang dipilih. Sehingga maasuk ke tahapan selanjutnya.</span>
+
+<span class="sd">      prosesData(data).clean_text(raw_text)</span>
+
+<span class="sd">      &#39;&#39;&#39;</span>
 
       <span class="n">nlp</span> <span class="o">=</span> <span class="n">English</span><span class="p">()</span>
 
@@ -794,7 +824,9 @@
 
       <span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">raw_text</span><span class="p">)</span>
 
-      <span class="n">lemma_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">lemma_</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">is_stop</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">token</span><span class="o">.</span><span class="n">is_punct</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">token</span><span class="o">.</span><span class="n">is_alpha</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">]</span>
+      <span class="n">lemma_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">lemma_</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">is_stop</span> <span class="ow">is</span> <span class="kc">False</span>
+
+      <span class="ow">and</span> <span class="n">token</span><span class="o">.</span><span class="n">is_punct</span> <span class="ow">is</span> <span class="kc">False</span> <span class="ow">and</span> <span class="n">token</span><span class="o">.</span><span class="n">is_alpha</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">]</span>
 
       <span class="n">joined_words</span> <span class="o">=</span> <span class="p">(</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lemma_list</span><span class="p">))</span>
 
@@ -804,11 +836,25 @@
 
   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataPertama</span><span class="p">,</span> <span class="n">dataKedua</span><span class="p">):</span>
 
+      <span class="sd">&#39;&#39;&#39;fungsi ini digunakan untuk menginisialisasi data</span>
+
+<span class="sd">      sehingga perlu dilakukan proses construct data.</span>
+
+<span class="sd">      &#39;&#39;&#39;</span>
+
       <span class="bp">self</span><span class="o">.</span><span class="n">data1</span> <span class="o">=</span> <span class="n">dataPertama</span>
 
       <span class="bp">self</span><span class="o">.</span><span class="n">data2</span> <span class="o">=</span> <span class="n">dataKedua</span>
 
   <span class="k">def</span> <span class="nf">kmeans_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nilai_cluster</span><span class="o">=</span> <span class="mi">3</span><span class="p">):</span>
+
+      <span class="sd">&#39;&#39;&#39;fungsi ini digunakan untuk mengklaster data menggunakan metode kmeans.</span>
+
+<span class="sd">      Dari fungsi ini dapat menciptakan data korelasi yang dimuat hasil klaster.</span>
+
+<span class="sd">      pengukuranEvaluasi()</span>
+
+<span class="sd">      &#39;&#39;&#39;</span>
 
       <span class="n">XVSM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data1</span><span class="p">)</span>
 
@@ -842,19 +888,21 @@
 
   <span class="k">def</span> <span class="nf">ukur_evaluasi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-      <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">pengukuranEvaluasi</span><span class="o">.</span><span class="n">kmeans_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">data2</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">109</span><span class="p">)</span> <span class="c1"># 70% training and 30% test</span>
+      <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> \
+
+      <span class="n">train_test_split</span><span class="p">(</span><span class="n">pengukuranEvaluasi</span><span class="o">.</span><span class="n">kmeans_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span>
+
+      <span class="bp">self</span><span class="o">.</span><span class="n">data2</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">109</span><span class="p">)</span> <span class="c1"># 70% training and 30% test</span>
 
       <span class="n">y_train</span> <span class="o">=</span> <span class="n">y_train</span><span class="o">.</span><span class="kp">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 
-      <span class="n">X</span> <span class="o">=</span> <span class="n">X_train</span>
-
-      <span class="n">Y</span> <span class="o">=</span> <span class="n">y_train</span>
-
-      <span class="n">Y</span> <span class="o">=</span> <span class="n">EncodeCategorical</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+      <span class="n">y_train</span> <span class="o">=</span> <span class="n">EncodeCategorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
 
       <span class="kp">size</span> <span class="o">=</span> <span class="mf">0.4</span>
 
-      <span class="k">return</span> <span class="n">ML</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="kp">size</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(),</span> <span class="n">RandomForestClassifier</span><span class="p">(),</span> <span class="n">DecisionTreeClassifier</span><span class="p">(),</span> <span class="n">KNeighborsClassifier</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span> <span class="o">=</span> <span class="mi">7000</span><span class="p">))</span>
+      <span class="k">return</span> <span class="n">ML</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="kp">size</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(),</span> <span class="n">RandomForestClassifier</span><span class="p">(),</span> <span class="n">DecisionTreeClassifier</span><span class="p">(),</span>
+
+      <span class="n">KNeighborsClassifier</span><span class="p">(),</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span> <span class="o">=</span> <span class="mi">7000</span><span class="p">))</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
@@ -880,11 +928,25 @@
 
 <span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">dataPertama</span><span class="p">,</span><span class="w"> </span><span class="n">dataKedua</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
 
+<span class="w">      </span><span class="s1">&#39;&#39;&#39;fungsi ini digunakan untuk menginisialisasi data</span>
+
+<span class="s1">      sehingga perlu dilakukan proses construct data.</span>
+
+<span class="s1">      &#39;&#39;&#39;</span><span class="w"></span>
+
 <span class="w">      </span><span class="n">self</span><span class="p">.</span><span class="n">data1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataPertama</span><span class="w"></span>
 
 <span class="w">      </span><span class="n">self</span><span class="p">.</span><span class="n">data2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dataKedua</span><span class="w"></span>
 
 <span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">kmeans_cluster</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">nilai_cluster</span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="s1">&#39;&#39;&#39;fungsi ini digunakan untuk mengklaster data menggunakan metode kmeans.</span>
+
+<span class="s1">      Dari fungsi ini dapat menciptakan data korelasi yang dimuat hasil klaster.</span>
+
+<span class="s1">      pengukuranEvaluasi()</span>
+
+<span class="s1">      &#39;&#39;&#39;</span><span class="w"></span>
 
 <span class="w">      </span><span class="n">XVSM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="k">array</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">data1</span><span class="p">)</span><span class="w"></span>
 
@@ -918,19 +980,21 @@
 
 <span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">ukur_evaluasi</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
 
-<span class="w">      </span><span class="n">X_train</span><span class="p">,</span><span class="w"> </span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_test_split</span><span class="p">(</span><span class="n">pengukuranEvaluasi</span><span class="p">.</span><span class="n">kmeans_cluster</span><span class="p">(</span><span class="n">self</span><span class="p">),</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">data2</span><span class="p">,</span><span class="w"> </span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">109</span><span class="p">)</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="mi">70</span><span class="o">%</span><span class="w"> </span><span class="n">training</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="mi">30</span><span class="o">%</span><span class="w"> </span><span class="n">test</span><span class="w"></span>
+<span class="w">      </span><span class="n">X_train</span><span class="p">,</span><span class="w"> </span><span class="n">X_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_test</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">\</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">train_test_split</span><span class="p">(</span><span class="n">pengukuranEvaluasi</span><span class="p">.</span><span class="n">kmeans_cluster</span><span class="p">(</span><span class="n">self</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">self</span><span class="p">.</span><span class="n">data2</span><span class="p">,</span><span class="w"> </span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">109</span><span class="p">)</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="mi">70</span><span class="o">%</span><span class="w"> </span><span class="n">training</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="mi">30</span><span class="o">%</span><span class="w"> </span><span class="n">test</span><span class="w"></span>
 
 <span class="w">      </span><span class="n">y_train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_train</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
 
-<span class="w">      </span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X_train</span><span class="w"></span>
-
-<span class="w">      </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y_train</span><span class="w"></span>
-
-<span class="w">      </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EncodeCategorical</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">y_train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EncodeCategorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">      </span><span class="k">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.4</span><span class="w"></span>
 
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">ML</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="k">size</span><span class="p">,</span><span class="w"> </span><span class="n">SVC</span><span class="p">(),</span><span class="w"> </span><span class="n">RandomForestClassifier</span><span class="p">(),</span><span class="w"> </span><span class="n">DecisionTreeClassifier</span><span class="p">(),</span><span class="w"> </span><span class="n">KNeighborsClassifier</span><span class="p">(),</span><span class="w"> </span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7000</span><span class="p">))</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">ML</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="w"> </span><span class="n">y_train</span><span class="p">,</span><span class="w"> </span><span class="k">size</span><span class="p">,</span><span class="w"> </span><span class="n">SVC</span><span class="p">(),</span><span class="w"> </span><span class="n">RandomForestClassifier</span><span class="p">(),</span><span class="w"> </span><span class="n">DecisionTreeClassifier</span><span class="p">(),</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">KNeighborsClassifier</span><span class="p">(),</span><span class="w"> </span><span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7000</span><span class="p">))</span><span class="w"></span>
 </code></pre></div>
 
 </details>
@@ -943,7 +1007,18 @@
 <span class="p">)</span>
 </code></pre></div>
 
+<p>fungsi ini digunakan untuk mengklaster data menggunakan metode kmeans.</p>
+<p>Dari fungsi ini dapat menciptakan data korelasi yang dimuat hasil klaster.
+pengukuranEvaluasi()</p>
 <details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">kmeans_cluster</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">nilai_cluster</span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="s1">&#39;&#39;&#39;fungsi ini digunakan untuk mengklaster data menggunakan metode kmeans.</span>
+
+<span class="s1">      Dari fungsi ini dapat menciptakan data korelasi yang dimuat hasil klaster.</span>
+
+<span class="s1">      pengukuranEvaluasi()</span>
+
+<span class="s1">      &#39;&#39;&#39;</span><span class="w"></span>
 
 <span class="w">      </span><span class="n">XVSM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="k">array</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">data1</span><span class="p">)</span><span class="w"></span>
 
@@ -985,19 +1060,21 @@
 
 <details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>  <span class="nv">def</span> <span class="nv">ukur_evaluasi</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>:
 
-      <span class="nv">X_train</span>, <span class="nv">X_test</span>, <span class="nv">y_train</span>, <span class="nv">y_test</span> <span class="o">=</span> <span class="nv">train_test_split</span><span class="ss">(</span><span class="nv">pengukuranEvaluasi</span>.<span class="nv">kmeans_cluster</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>, <span class="nv">self</span>.<span class="nv">data2</span>, <span class="nv">test_size</span><span class="o">=</span><span class="mi">0</span>.<span class="mi">3</span>,<span class="nv">random_state</span><span class="o">=</span><span class="mi">109</span><span class="ss">)</span> # <span class="mi">70</span><span class="o">%</span> <span class="nv">training</span> <span class="nv">and</span> <span class="mi">30</span><span class="o">%</span> <span class="nv">test</span>
+      <span class="nv">X_train</span>, <span class="nv">X_test</span>, <span class="nv">y_train</span>, <span class="nv">y_test</span> <span class="o">=</span> \
+
+      <span class="nv">train_test_split</span><span class="ss">(</span><span class="nv">pengukuranEvaluasi</span>.<span class="nv">kmeans_cluster</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>,
+
+      <span class="nv">self</span>.<span class="nv">data2</span>, <span class="nv">test_size</span><span class="o">=</span><span class="mi">0</span>.<span class="mi">3</span>,<span class="nv">random_state</span><span class="o">=</span><span class="mi">109</span><span class="ss">)</span> # <span class="mi">70</span><span class="o">%</span> <span class="nv">training</span> <span class="nv">and</span> <span class="mi">30</span><span class="o">%</span> <span class="nv">test</span>
 
       <span class="nv">y_train</span> <span class="o">=</span> <span class="nv">y_train</span>.<span class="nv">argmax</span><span class="ss">(</span><span class="nv">axis</span><span class="o">=</span> <span class="mi">1</span><span class="ss">)</span>
 
-      <span class="nv">X</span> <span class="o">=</span> <span class="nv">X_train</span>
-
-      <span class="nv">Y</span> <span class="o">=</span> <span class="nv">y_train</span>
-
-      <span class="nv">Y</span> <span class="o">=</span> <span class="nv">EncodeCategorical</span><span class="ss">(</span><span class="nv">Y</span><span class="ss">)</span>
+      <span class="nv">y_train</span> <span class="o">=</span> <span class="nv">EncodeCategorical</span><span class="ss">(</span><span class="nv">y_train</span><span class="ss">)</span>
 
       <span class="nv">size</span> <span class="o">=</span> <span class="mi">0</span>.<span class="mi">4</span>
 
-      <span class="k">return</span> <span class="nv">ML</span><span class="ss">(</span><span class="nv">X</span>, <span class="nv">Y</span>, <span class="nv">size</span>, <span class="nv">SVC</span><span class="ss">()</span>, <span class="nv">RandomForestClassifier</span><span class="ss">()</span>, <span class="nv">DecisionTreeClassifier</span><span class="ss">()</span>, <span class="nv">KNeighborsClassifier</span><span class="ss">()</span>, <span class="nv">LogisticRegression</span><span class="ss">(</span><span class="nv">max_iter</span> <span class="o">=</span> <span class="mi">7000</span><span class="ss">))</span>
+      <span class="k">return</span> <span class="nv">ML</span><span class="ss">(</span><span class="nv">X_train</span>, <span class="nv">y_train</span>, <span class="nv">size</span>, <span class="nv">SVC</span><span class="ss">()</span>, <span class="nv">RandomForestClassifier</span><span class="ss">()</span>, <span class="nv">DecisionTreeClassifier</span><span class="ss">()</span>,
+
+      <span class="nv">KNeighborsClassifier</span><span class="ss">()</span>, <span class="nv">LogisticRegression</span><span class="ss">(</span><span class="nv">max_iter</span> <span class="o">=</span> <span class="mi">7000</span><span class="ss">))</span>
 </code></pre></div>
 
 </details>
@@ -1011,21 +1088,43 @@
 
 <span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">namaFile</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
 
+<span class="w">      </span><span class="s1">&#39;&#39;&#39;fungi ini digunakan untuk menginisialisasi data</span>
+
+<span class="s1">      sehingga perlu dilakukan proses construct data.</span>
+
+<span class="s1">      &#39;&#39;&#39;</span><span class="w"></span>
+
 <span class="w">      </span><span class="n">self</span><span class="p">.</span><span class="n">dataFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">namaFile</span><span class="w"></span>
 
 <span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">fulldataset</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">inputSRS</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SRS1&#39;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
 
+<span class="w">      </span><span class="s1">&#39;&#39;&#39;fungi ini digunakan untuk menampilkan data secara spesifik,</span>
+
+<span class="s1">      sehingga menunjukkan data yang diinginkan.</span>
+
+<span class="s1">      syntax yang digunakan adalah sebagai berikut:</span>
+
+<span class="s1">      prosesData(data).fulldataset(inputSRS)</span>
+
+<span class="s1">      &#39;&#39;&#39;</span><span class="w"></span>
+
 <span class="w">      </span><span class="n">xl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pd</span><span class="p">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">dataFile</span><span class="p">)</span><span class="w"></span>
 
-<span class="w">      </span><span class="n">dfs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="nl">sh</span><span class="p">:</span><span class="n">xl</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">sh</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">xl</span><span class="p">.</span><span class="n">sheet_names</span><span class="err">}</span><span class="w"></span>
+<span class="w">      </span><span class="n">dfs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="nl">sh</span><span class="p">:</span><span class="n">xl</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">sh</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">xl</span><span class="p">.</span><span class="n">sheet_names</span><span class="err">}</span><span class="o">[</span><span class="n">inputSRS</span><span class="o">]</span><span class="w"></span>
 
-<span class="w">      </span><span class="n">kalimat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="o">[</span><span class="n">inputSRS</span><span class="o">]</span><span class="w"></span>
-
-<span class="w">      </span><span class="n">kalimat_semua</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kalimat</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">kalimat</span><span class="p">))</span><span class="w"></span>
-
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">kalimat_semua</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">dfs</span><span class="w"></span>
 
 <span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">preprocessing</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="s1">&#39;&#39;&#39;fungsi ini digunakan untuk mengecek data yang digunakan</span>
+
+<span class="s1">      untuk melihat data yang digunakan. sehingga syntax yang digunakan</span>
+
+<span class="s1">      yaitu adalah sebagai berikut:</span>
+
+<span class="s1">      prosesData(data).preprocessing()</span>
+
+<span class="s1">      &#39;&#39;&#39;</span><span class="w"></span>
 
 <span class="w">      </span><span class="n">xl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pd</span><span class="p">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">dataFile</span><span class="p">)</span><span class="w"></span>
 
@@ -1039,15 +1138,27 @@
 
 <span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">apply_cleaning_function_to_list</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
 
-<span class="w">      </span><span class="n">cleaned_X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+<span class="w">      </span><span class="s1">&#39;&#39;&#39;fungsi ini digunakan untuk mengaplikasikan fungsi pembersihan data,</span>
 
-<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="k">element</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">X</span><span class="p">:</span><span class="w"></span>
+<span class="s1">      sesuai dengan list yang dipilih. Sehingga maasuk ke tahapan selanjutnya.</span>
 
-<span class="w">          </span><span class="n">cleaned_X</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">prosesData</span><span class="p">.</span><span class="n">clean_text</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">raw_text</span><span class="o">=</span><span class="w"> </span><span class="k">element</span><span class="p">))</span><span class="w"></span>
+<span class="s1">      prosesData(data).apply_cleaning_function_to_list(X)</span>
+
+<span class="s1">      &#39;&#39;&#39;</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">cleaned_X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">prosesData.clean_text(self, raw_text= element)for element in X</span><span class="o">]</span><span class="w"></span>
 
 <span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">cleaned_X</span><span class="w"></span>
 
 <span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">clean_text</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">raw_text</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="s1">&#39;&#39;&#39;fungsi ini digunakan untuk mengaplikasikan fungsi pembersihan data,</span>
+
+<span class="s1">      sesuai dengan list yang dipilih. Sehingga maasuk ke tahapan selanjutnya.</span>
+
+<span class="s1">      prosesData(data).clean_text(raw_text)</span>
+
+<span class="s1">      &#39;&#39;&#39;</span><span class="w"></span>
 
 <span class="w">      </span><span class="n">nlp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">English</span><span class="p">()</span><span class="w"></span>
 
@@ -1055,7 +1166,9 @@
 
 <span class="w">      </span><span class="n">tokens</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tokenizer</span><span class="p">(</span><span class="n">raw_text</span><span class="p">)</span><span class="w"></span>
 
-<span class="w">      </span><span class="n">lemma_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">token.lemma_.lower() for token in tokens if token.is_stop is False and token.is_punct is False and token.is_alpha is True</span><span class="o">]</span><span class="w"></span>
+<span class="w">      </span><span class="n">lemma_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">token.lemma_.lower() for token in tokens if token.is_stop is False</span>
+
+<span class="n">      and token.is_punct is False and token.is_alpha is True</span><span class="o">]</span><span class="w"></span>
 
 <span class="w">      </span><span class="n">joined_words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="ss">&quot; &quot;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">lemma_list</span><span class="p">))</span><span class="w"></span>
 
@@ -1072,13 +1185,20 @@
 <span class="p">)</span>
 </code></pre></div>
 
+<p>fungsi ini digunakan untuk mengaplikasikan fungsi pembersihan data, </p>
+<p>sesuai dengan list yang dipilih. Sehingga maasuk ke tahapan selanjutnya.
+prosesData(data).apply_cleaning_function_to_list(X)</p>
 <details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>  <span class="nv">def</span> <span class="nv">apply_cleaning_function_to_list</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">X</span><span class="ss">)</span>:
 
-      <span class="nv">cleaned_X</span> <span class="o">=</span> []
+      <span class="s1">&#39;&#39;&#39;</span><span class="s">fungsi ini digunakan untuk mengaplikasikan fungsi pembersihan data,</span>
 
-      <span class="k">for</span> <span class="nv">element</span> <span class="nv">in</span> <span class="nv">X</span>:
+      <span class="nv">sesuai</span> <span class="nv">dengan</span> <span class="nv">list</span> <span class="nv">yang</span> <span class="nv">dipilih</span>. <span class="nv">Sehingga</span> <span class="nv">maasuk</span> <span class="nv">ke</span> <span class="nv">tahapan</span> <span class="nv">selanjutnya</span>.
 
-          <span class="nv">cleaned_X</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">prosesData</span>.<span class="nv">clean_text</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">raw_text</span><span class="o">=</span> <span class="nv">element</span><span class="ss">))</span>
+      <span class="nv">prosesData</span><span class="ss">(</span><span class="nv">data</span><span class="ss">)</span>.<span class="nv">apply_cleaning_function_to_list</span><span class="ss">(</span><span class="nv">X</span><span class="ss">)</span>
+
+      <span class="s1">&#39;&#39;&#39;</span>
+
+      <span class="nv">cleaned_X</span> <span class="o">=</span> [<span class="nv">prosesData</span>.<span class="nv">clean_text</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">raw_text</span><span class="o">=</span> <span class="nv">element</span><span class="ss">)</span><span class="k">for</span> <span class="nv">element</span> <span class="nv">in</span> <span class="nv">X</span>]
 
       <span class="k">return</span> <span class="nv">cleaned_X</span>
 </code></pre></div>
@@ -1091,7 +1211,18 @@
 <span class="p">)</span>
 </code></pre></div>
 
+<p>fungsi ini digunakan untuk mengaplikasikan fungsi pembersihan data, </p>
+<p>sesuai dengan list yang dipilih. Sehingga maasuk ke tahapan selanjutnya.
+prosesData(data).clean_text(raw_text)</p>
 <details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>  <span class="nv">def</span> <span class="nv">clean_text</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">raw_text</span><span class="ss">)</span>:
+
+      <span class="s1">&#39;&#39;&#39;</span><span class="s">fungsi ini digunakan untuk mengaplikasikan fungsi pembersihan data,</span>
+
+      <span class="nv">sesuai</span> <span class="nv">dengan</span> <span class="nv">list</span> <span class="nv">yang</span> <span class="nv">dipilih</span>. <span class="nv">Sehingga</span> <span class="nv">maasuk</span> <span class="nv">ke</span> <span class="nv">tahapan</span> <span class="nv">selanjutnya</span>.
+
+      <span class="nv">prosesData</span><span class="ss">(</span><span class="nv">data</span><span class="ss">)</span>.<span class="nv">clean_text</span><span class="ss">(</span><span class="nv">raw_text</span><span class="ss">)</span>
+
+      <span class="s1">&#39;&#39;&#39;</span>
 
       <span class="nv">nlp</span> <span class="o">=</span> <span class="nv">English</span><span class="ss">()</span>
 
@@ -1099,7 +1230,9 @@
 
       <span class="nv">tokens</span> <span class="o">=</span> <span class="nv">tokenizer</span><span class="ss">(</span><span class="nv">raw_text</span><span class="ss">)</span>
 
-      <span class="nv">lemma_list</span> <span class="o">=</span> [<span class="nv">token</span>.<span class="nv">lemma_</span>.<span class="nv">lower</span><span class="ss">()</span> <span class="k">for</span> <span class="nv">token</span> <span class="nv">in</span> <span class="nv">tokens</span> <span class="k">if</span> <span class="nv">token</span>.<span class="nv">is_stop</span> <span class="nv">is</span> <span class="nv">False</span> <span class="nv">and</span> <span class="nv">token</span>.<span class="nv">is_punct</span> <span class="nv">is</span> <span class="nv">False</span> <span class="nv">and</span> <span class="nv">token</span>.<span class="nv">is_alpha</span> <span class="nv">is</span> <span class="nv">True</span>]
+      <span class="nv">lemma_list</span> <span class="o">=</span> [<span class="nv">token</span>.<span class="nv">lemma_</span>.<span class="nv">lower</span><span class="ss">()</span> <span class="k">for</span> <span class="nv">token</span> <span class="nv">in</span> <span class="nv">tokens</span> <span class="k">if</span> <span class="nv">token</span>.<span class="nv">is_stop</span> <span class="nv">is</span> <span class="nv">False</span>
+
+      <span class="nv">and</span> <span class="nv">token</span>.<span class="nv">is_punct</span> <span class="nv">is</span> <span class="nv">False</span> <span class="nv">and</span> <span class="nv">token</span>.<span class="nv">is_alpha</span> <span class="nv">is</span> <span class="nv">True</span>]
 
       <span class="nv">joined_words</span> <span class="o">=</span> <span class="ss">(</span> <span class="s2">&quot;</span><span class="s"> </span><span class="s2">&quot;</span>.<span class="nv">join</span><span class="ss">(</span><span class="nv">lemma_list</span><span class="ss">))</span>
 
@@ -1114,17 +1247,27 @@
 <span class="p">)</span>
 </code></pre></div>
 
+<p>fungi ini digunakan untuk menampilkan data secara spesifik,</p>
+<p>sehingga menunjukkan data yang diinginkan.
+syntax yang digunakan adalah sebagai berikut:
+prosesData(data).fulldataset(inputSRS)</p>
 <details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">fulldataset</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">inputSRS</span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SRS1&#39;</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">      </span><span class="s1">&#39;&#39;&#39;fungi ini digunakan untuk menampilkan data secara spesifik,</span>
+
+<span class="s1">      sehingga menunjukkan data yang diinginkan.</span>
+
+<span class="s1">      syntax yang digunakan adalah sebagai berikut:</span>
+
+<span class="s1">      prosesData(data).fulldataset(inputSRS)</span>
+
+<span class="s1">      &#39;&#39;&#39;</span><span class="w"></span>
 
 <span class="w">      </span><span class="n">xl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pd</span><span class="p">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">dataFile</span><span class="p">)</span><span class="w"></span>
 
-<span class="w">      </span><span class="n">dfs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="nl">sh</span><span class="p">:</span><span class="n">xl</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">sh</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">xl</span><span class="p">.</span><span class="n">sheet_names</span><span class="err">}</span><span class="w"></span>
+<span class="w">      </span><span class="n">dfs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="nl">sh</span><span class="p">:</span><span class="n">xl</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">sh</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">sh</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">xl</span><span class="p">.</span><span class="n">sheet_names</span><span class="err">}</span><span class="o">[</span><span class="n">inputSRS</span><span class="o">]</span><span class="w"></span>
 
-<span class="w">      </span><span class="n">kalimat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="o">[</span><span class="n">inputSRS</span><span class="o">]</span><span class="w"></span>
-
-<span class="w">      </span><span class="n">kalimat_semua</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kalimat</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">kalimat</span><span class="p">))</span><span class="w"></span>
-
-<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">kalimat_semua</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">dfs</span><span class="w"></span>
 </code></pre></div>
 
 </details>
@@ -1134,7 +1277,21 @@
 <span class="p">)</span>
 </code></pre></div>
 
+<p>fungsi ini digunakan untuk mengecek data yang digunakan </p>
+<p>untuk melihat data yang digunakan. sehingga syntax yang digunakan
+yaitu adalah sebagai berikut:
+prosesData(data).preprocessing()</p>
 <details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>  <span class="nv">def</span> <span class="nv">preprocessing</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>:
+
+      <span class="s1">&#39;&#39;&#39;</span><span class="s">fungsi ini digunakan untuk mengecek data yang digunakan</span>
+
+      <span class="nv">untuk</span> <span class="nv">melihat</span> <span class="nv">data</span> <span class="nv">yang</span> <span class="nv">digunakan</span>. <span class="nv">sehingga</span> <span class="nv">syntax</span> <span class="nv">yang</span> <span class="nv">digunakan</span>
+
+      <span class="nv">yaitu</span> <span class="nv">adalah</span> <span class="nv">sebagai</span> <span class="nv">berikut</span>:
+
+      <span class="nv">prosesData</span><span class="ss">(</span><span class="nv">data</span><span class="ss">)</span>.<span class="nv">preprocessing</span><span class="ss">()</span>
+
+      <span class="s1">&#39;&#39;&#39;</span>
 
       <span class="nv">xl</span> <span class="o">=</span> <span class="nv">pd</span>.<span class="nv">ExcelFile</span><span class="ss">(</span><span class="nv">self</span>.<span class="nv">dataFile</span><span class="ss">)</span>
 
