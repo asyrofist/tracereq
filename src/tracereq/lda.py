@@ -4,7 +4,7 @@ dibuat fungsi ini digunakan untuk memproses lda yang baik dan benar.
 import pandas as pd
 from sklearn.decomposition import NMF, LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from tracereq.preprocessing_evaluation import prosesData, pengukuranEvaluasi, tabulate
+from tracereq.preprocessing_evaluation import prosesData, tabulate
 
 
 class latentDirichlet:
@@ -52,47 +52,16 @@ class latentDirichlet:
       dt_df =  pd.DataFrame(data_lda, index= req, columns= fitur_lda)
       return dt_df
 
-  def tabulasi_fr(self, th, id_req, param= ['fr', 'th', 'ukur']):
+  def main(self, id_req, output= ['fr', 'kl', 'lda']):
       dt_fr = latentDirichlet.Frobenius_norm_feature(self, id_req)
-      th_fr = pengukuranEvaluasi.threshold_value(self, th, dt_fr)
-      myUkur = pengukuranEvaluasi.ukur_evaluasi(self, dt_fr, th_fr)
-      if 'fr' in param:
-          return dt_fr
-      elif 'th' in param:
-          return th_fr
-      elif 'ukur' in param:
-          return myUkur
-      
-  def tabulasi_kl(self, th, id_req, param= ['kl', 'th', 'ukur']):
       dt_kl = latentDirichlet.Kullback_feature(self, id_req)
-      th_kl = pengukuranEvaluasi.threshold_value(self, th, dt_kl)
-      myUkur = pengukuranEvaluasi.ukur_evaluasi(self, dt_kl, th_kl)
-      if 'kl' in param:
-          return dt_kl
-      elif 'th' in param:
-          return th_kl
-      elif 'ukur' in param:
-          return myUkur
-
-  def tabulasi_lda(self, th, id_req, param= ['lda', 'th', 'ukur']):
       dt_lda = latentDirichlet.lda_feature(id_req)
-      th_lda = pengukuranEvaluasi.threshold_value(th, dt_lda)
-      myUkur = pengukuranEvaluasi.ukur_evaluasi(self, dt_lda, th_lda)
-      if 'lda' in param:
-          return dt_lda
-      elif 'th' in param:
-          return th_lda
-      elif 'ukur' in param:
-          return myUkur
-
-  def main(self, th, id_req, output= ['fr', 'kl', 'lda']):
       if 'fr'in output:
-        return latentDirichlet.tabulasi_fr(self, th, id_req,'fr')
+        return dt_fr
       elif 'kl'in output:
-        return latentDirichlet.tabulasi_kl(self, th, id_req, 'kl')
+        return dt_kl
       elif 'lda'in output:
-        return latentDirichlet.tabulasi_lda(self, th, id_req, 'lda')
-
+        return dt_lda
 
 if __name__ == "__main__":
   try:
@@ -102,7 +71,7 @@ if __name__ == "__main__":
     text_to_clean = list(req['Requirement Statement'])
     cleaned_text = myData.apply_cleaning_function_to_list(text_to_clean)
     print(tabulate(cleaned_text, headers = 'keys', tablefmt = 'psql'))
-    a = latentDirichlet(cleaned_text).main(0.2, id_req, 'lda')
+    a = latentDirichlet(cleaned_text).main(id_req, 'lda')
     print(tabulate(a, headers = 'keys', tablefmt = 'psql'))
 
   except OSError as err:

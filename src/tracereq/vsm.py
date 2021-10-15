@@ -33,20 +33,13 @@ class measurement:
         return frequency_cosine    
 
     def main(self, cleaned_text, id_req, stopwords_list = 'english' , 
-            norm_list= ['l1', 'l2', 'max'], output= ['bow', 'tfidf', 'th_bow', 'th_tfidf'], threshold= 0.2):
+            norm_list= ['l1', 'l2', 'max'], output= ['bow', 'tfidf']):
         data_bow = measurement.bow(self, cleaned_text, id_req, stopwords_list)
-        th_bow = pengukuranEvaluasi.threshold_value(self, data_bow, threshold)
         data_tfidf = measurement.tfidf(self, cleaned_text, id_req, norm_list, stopwords_list)
-        th_tfiidf = pengukuranEvaluasi.threshold_value(self, data_tfidf, threshold)
         if 'bow' in output:
             return data_bow
-        elif 'th_bow' in output:
-            return th_bow
         elif 'tfidf' in output:
             return data_tfidf
-        elif 'th_tfidf' in output:
-            return th_tfiidf
-
 
 if __name__ == "__main__":
   try:
