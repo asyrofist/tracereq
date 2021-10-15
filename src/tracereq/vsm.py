@@ -5,7 +5,7 @@ import  numpy as np, pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import pairwise_kernels
-from tracereq.preprocessing_evaluation import cleaned_text, id_req, pengukuranEvaluasi, tabulate
+from tracereq.preprocessing_evaluation import prosesData, pengukuranEvaluasi, tabulate
 
 class measurement:
     def __init__(self):
@@ -50,6 +50,12 @@ class measurement:
 
 if __name__ == "__main__":
   try:
+    myData = prosesData() # myData.preprocessing()
+    req = myData.fulldataset() # myData.fulldataset(inputSRS)
+    id_req  = req['ID']
+    text_to_clean = list(req['Requirement Statement'])
+    cleaned_text = myData.apply_cleaning_function_to_list(text_to_clean)
+    print(tabulate(cleaned_text, headers = 'keys', tablefmt = 'psql'))
     a = measurement().main(cleaned_text, id_req, norm_list= 'l2', output= 'tfidf')
     print(tabulate(a, headers = 'keys', tablefmt = 'psql'))
 

@@ -4,7 +4,7 @@ dibuat fungsi ini digunakan untuk memproses lda yang baik dan benar.
 import pandas as pd
 from sklearn.decomposition import NMF, LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from tracereq.preprocessing_evaluation import pengukuranEvaluasi, cleaned_text, id_req, tabulate
+from tracereq.preprocessing_evaluation import prosesData, pengukuranEvaluasi, tabulate
 
 
 class latentDirichlet:
@@ -96,6 +96,12 @@ class latentDirichlet:
 
 if __name__ == "__main__":
   try:
+    myData = prosesData() # myData.preprocessing()
+    req = myData.fulldataset() # myData.fulldataset(inputSRS)
+    id_req  = req['ID']
+    text_to_clean = list(req['Requirement Statement'])
+    cleaned_text = myData.apply_cleaning_function_to_list(text_to_clean)
+    print(tabulate(cleaned_text, headers = 'keys', tablefmt = 'psql'))
     a = latentDirichlet(cleaned_text).main(0.2, id_req, 'lda')
     print(tabulate(a, headers = 'keys', tablefmt = 'psql'))
 

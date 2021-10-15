@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="tracereq",
-    version="0.0.4",
+    version="0.0.5",
     author="Asyrofist (Rakha Asyrofi)",
     author_email="rakhasyrofist@gmail.com",
     description="Berikut ini adalah deskripsi singkat bagaimana program tracebility requirement dibuat",
