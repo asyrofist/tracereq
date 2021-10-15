@@ -1,10 +1,10 @@
+"""Modul ini mengkalkulasi setiap bobot dengan penggunaa lsa, dari setiap dokumen yang 
+dibuat fungsi ini digunakan untuk memproses lsa yang baik dan benar.
+"""
 import pandas as pd
-from scipy.sparse import data
 from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfVectorizer
-from tabulate import tabulate
-
-from tracereq.preprocessing_evaluation import pengukuranEvaluasi
+from tracereq.preprocessing_evaluation import pengukuranEvaluasi, cleaned_text, id_req, tabulate
 
 
 class latentSemantic:
@@ -22,27 +22,25 @@ class latentSemantic:
       terms = vectorizer.get_feature_names()
       return pd.DataFrame(svd_model.components_, index= req, columns= terms)
 
-  def threshold_value(self, threshold, data):
-      dt = data.values >= threshold
-      dt1 = pd.DataFrame(dt, index= data.index, columns= data.columns)
-      mask = dt1.isin([True])
-      dt3 = dt1.where(mask, other= 0)
-      mask2 = dt3.isin([False])
-      th_cosine1 = dt3.where(mask2, other= 1)
-      return th_cosine1
-
-  def main(self, threshold, data):
+  def main(self, threshold, data, output= ['lsa', 'th', 'ukur']):
+      '''fungsi ini merupakan fungsi utama dari pengukuran evaluasi.
+      cukup dengan menggunakan inisialisasi dari dengan syntax ini.
+      pengukuranEvaluasi(cleaned_text).main(threshold, data, output= 'lsa')
+      '''
       dt_lsa = latentSemantic.ukurLSA(self, data)
-      th_lsa = latentSemantic.threshold_value(self, threshold, dt_lsa)
-      myUkur = pengukuranEvaluasi(dt_lsa, th_lsa).ukur_evaluasi()
-      return dt_lsa, th_lsa, myUkur
+      th_lsa = pengukuranEvaluasi.threshold_value(self, threshold, dt_lsa)
+      myUkur = pengukuranEvaluasi.ukur_evaluasi(self, dt_lsa, th_lsa)
+      if 'lsa' in output:
+        return dt_lsa
+      elif 'th' in output:
+        return th_lsa
+      elif 'ukur' in output:
+        return myUkur
 
 if __name__ == "__main__":
   try:
-    a = latentSemantic(data).main(0.2, data)
-    print(tabulate(a[0], headers = 'keys', tablefmt = 'psql'))
-    print(tabulate(a[1], headers = 'keys', tablefmt = 'psql'))
-    print(a[2])
+    a = latentSemantic(cleaned_text).main(0.2, id_req, 'lsa')
+    print(tabulate(a, headers = 'keys', tablefmt = 'psql'))
 
   except OSError as err:
     print("OS error: {0}".format(err))

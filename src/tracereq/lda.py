@@ -1,15 +1,15 @@
+"""Modul ini mengkalkulasi setiap bobot dengan penggunaa lda, dari setiap dokumen yang 
+dibuat fungsi ini digunakan untuk memproses lda yang baik dan benar.
+"""
 import pandas as pd
-from scipy.sparse import data
 from sklearn.decomposition import NMF, LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from tabulate import tabulate
-
-from tracereq.preprocessing_evaluation import pengukuranEvaluasi
+from tracereq.preprocessing_evaluation import pengukuranEvaluasi, cleaned_text, id_req, tabulate
 
 
 class latentDirichlet:
-  def __init__(self, data_raw):
-      self.data = data_raw
+  def __init__(self, cleaned_text):
+      self.data = cleaned_text
       self.n_features = len(self.data)
 
   def ukur_tfidf_vectorizer(self):
@@ -52,48 +52,52 @@ class latentDirichlet:
       dt_df =  pd.DataFrame(data_lda, index= req, columns= fitur_lda)
       return dt_df
 
-  def threshold_value(self, threshold, data):
-      dt = data.values >= threshold
-      dt1 = pd.DataFrame(dt, index= data.index, columns= data.columns)
-      mask = dt1.isin([True])
-      dt3 = dt1.where(mask, other= 0)
-      mask2 = dt3.isin([False])
-      th_cosine1 = dt3.where(mask2, other= 1)
-      return th_cosine1
-
-  def tabulasi_fr(self, th, data):
-      dt_fr = latentDirichlet.Frobenius_norm_feature(self, data)
-      th_fr = latentDirichlet.threshold_value(self, th, dt_fr)
-      myUkur = pengukuranEvaluasi(dt_fr, th_fr).ukur_evaluasi()
-      return dt_fr, th_fr, myUkur
+  def tabulasi_fr(self, th, id_req, param= ['fr', 'th', 'ukur']):
+      dt_fr = latentDirichlet.Frobenius_norm_feature(self, id_req)
+      th_fr = pengukuranEvaluasi.threshold_value(self, th, dt_fr)
+      myUkur = pengukuranEvaluasi.ukur_evaluasi(self, dt_fr, th_fr)
+      if 'fr' in param:
+          return dt_fr
+      elif 'th' in param:
+          return th_fr
+      elif 'ukur' in param:
+          return myUkur
       
-  def tabulasi_kl(self, th, data):
-      dt_kl = latentDirichlet.Kullback_feature(self, data)
-      th_kl = latentDirichlet.threshold_value(self, th, dt_kl)
-      myUkur = pengukuranEvaluasi(dt_kl, th_kl).ukur_evaluasi()
-      return dt_kl, th_kl, myUkur
+  def tabulasi_kl(self, th, id_req, param= ['kl', 'th', 'ukur']):
+      dt_kl = latentDirichlet.Kullback_feature(self, id_req)
+      th_kl = pengukuranEvaluasi.threshold_value(self, th, dt_kl)
+      myUkur = pengukuranEvaluasi.ukur_evaluasi(self, dt_kl, th_kl)
+      if 'kl' in param:
+          return dt_kl
+      elif 'th' in param:
+          return th_kl
+      elif 'ukur' in param:
+          return myUkur
 
-  def tabulasi_lda(self, th, data):
-      dt_lda = latentDirichlet.lda_feature(data)
-      th_lda = latentDirichlet.threshold_value(th, dt_lda)
-      myUkur = pengukuranEvaluasi(dt_lda, th_lda).ukur_evaluasi()
-      return dt_lda, th_lda, myUkur
+  def tabulasi_lda(self, th, id_req, param= ['lda', 'th', 'ukur']):
+      dt_lda = latentDirichlet.lda_feature(id_req)
+      th_lda = pengukuranEvaluasi.threshold_value(th, dt_lda)
+      myUkur = pengukuranEvaluasi.ukur_evaluasi(self, dt_lda, th_lda)
+      if 'lda' in param:
+          return dt_lda
+      elif 'th' in param:
+          return th_lda
+      elif 'ukur' in param:
+          return myUkur
 
-  def main(self, th, data, output= ['fr', 'kl', 'lda']):
+  def main(self, th, id_req, output= ['fr', 'kl', 'lda']):
       if 'fr'in output:
-        latentDirichlet.tabulasi_fr(self, th, data)
+        return latentDirichlet.tabulasi_fr(self, th, id_req,'fr')
       elif 'kl'in output:
-        latentDirichlet.tabulasi_kl(self, th, data)
+        return latentDirichlet.tabulasi_kl(self, th, id_req, 'kl')
       elif 'lda'in output:
-        latentDirichlet.tabulasi_lda(self, th, data)
+        return latentDirichlet.tabulasi_lda(self, th, id_req, 'lda')
 
 
 if __name__ == "__main__":
   try:
-    a = latentDirichlet(data).main(0.2, data, 'lda')
-    print(tabulate(a[0], headers = 'keys', tablefmt = 'psql'))
-    print(tabulate(a[1], headers = 'keys', tablefmt = 'psql'))
-    print(a[2])
+    a = latentDirichlet(cleaned_text).main(0.2, id_req, 'lda')
+    print(tabulate(a, headers = 'keys', tablefmt = 'psql'))
 
   except OSError as err:
     print("OS error: {0}".format(err))

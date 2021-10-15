@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="tracereq",
-    version="0.0.3",
+    version="0.0.4",
     author="Asyrofist (Rakha Asyrofi)",
     author_email="rakhasyrofist@gmail.com",
     description="Berikut ini adalah deskripsi singkat bagaimana program tracebility requirement dibuat",
@@ -14,10 +14,9 @@ setuptools.setup(
     url="https://github.com/asyrofist/Simple-Traceability-SRS-Document",
     project_urls={
         "Bug Tracker": "https://github.com/asyrofist/tracereqissues",
-        "Documentation": "https://simple-tracebility.readthedocs.io/en/latest",
+        "Documentation": "https://asyrofist.github.io/tracereq/",
         "Source Code": "https://github.com/asyrofist/tracereq",
-        "Changelog": "https://simple-tracebility.readthedocs.io/en/latest/hist.html",
-
+        "Changelog": "https://asyrofist.github.io/tracereq/CHANGELOG/",
     },
     classifiers=[
         "Programming Language :: Python :: 3",

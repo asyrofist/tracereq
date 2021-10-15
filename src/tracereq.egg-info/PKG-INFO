@@ -1,15 +1,15 @@
 Metadata-Version: 2.1
 Name: tracereq
-Version: 0.0.3
+Version: 0.0.4
 Summary: Berikut ini adalah deskripsi singkat bagaimana program tracebility requirement dibuat
 Home-page: https://github.com/asyrofist/Simple-Traceability-SRS-Document
 Author: Asyrofist (Rakha Asyrofi)
 Author-email: rakhasyrofist@gmail.com
 License: UNKNOWN
 Project-URL: Bug Tracker, https://github.com/asyrofist/tracereqissues
-Project-URL: Documentation, https://simple-tracebility.readthedocs.io/en/latest
+Project-URL: Documentation, https://asyrofist.github.io/tracereq/
 Project-URL: Source Code, https://github.com/asyrofist/tracereq
-Project-URL: Changelog, https://simple-tracebility.readthedocs.io/en/latest/hist.html
+Project-URL: Changelog, https://asyrofist.github.io/tracereq/CHANGELOG/
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
