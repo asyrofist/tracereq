@@ -42,7 +42,7 @@ myProses = prosesData(inputData= 'dataset.xlsx')
 myProses.preprocessing()
 ```
 
-Check out this [youtube link](https://youtu.be/9FcAO_wbG_I): 
+Check out this [youtube link](https://ponselharian.com/loJV9J) 
 
 
 
