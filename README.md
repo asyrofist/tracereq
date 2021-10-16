@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5528405.svg)](https://ponselharian.com/WU6)
-![image](https://visitor-badge.laobi.icu/badge?page_id=asyrofist/Simple-Traceability-SRS-Document) 
-![PyPI - Python Version](https://img.shields.io/badge/python-3.7.0-blue.svg)
+[![image](https://visitor-badge.laobi.icu/badge?page_id=asyrofist/Simple-Traceability-SRS-Document)](https://ponselharian.com/5S0ExclRYLJy)
+[![PyPI - Python Version](https://img.shields.io/badge/python-3.7.0-blue.svg)](https://ponselharian.com/5S0ExclRYLJy)
 [![PyPI](https://img.shields.io/pypi/v/tracereq.svg)](https://ponselharian.com/QSMpYX4yKxIu)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 [![Build Status](https://app.travis-ci.com/asyrofist/Simple-Traceability-SRS-Document.svg?branch=main)](https://ponselharian.com/zCwZqi)
